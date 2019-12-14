@@ -4,6 +4,8 @@ luminescent_screen_blur.shader
 
 combines a blur with the original image giving a "neon" look
 
+tested on Sprite and ColorRect
+
 */
 shader_type canvas_item;
 
