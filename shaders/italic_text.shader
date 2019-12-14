@@ -1,5 +1,5 @@
 /*
-italic.shader
+italic_text.shader
 
 note this is a vertex shader (works well with text)
 */
