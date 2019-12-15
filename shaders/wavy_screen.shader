@@ -2,9 +2,6 @@
 
 wavy_screen.shader
 
-ALPHA VERSION
-
-
 animated sine based screen wobble, works as an overlay
 
 add to a ColorRect

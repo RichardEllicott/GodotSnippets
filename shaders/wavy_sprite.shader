@@ -2,12 +2,7 @@
 
 wavy_sprite.shader
 
-ALPHA VERSION
-
-
 add to a Sprite, works on the sprite itself (not an overlay)
-
-
 
 */
 shader_type canvas_item;
