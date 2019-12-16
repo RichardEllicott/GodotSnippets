@@ -16,12 +16,13 @@ NOTE, we only use a "set" as there is no point to get this variable
 tool
 extends Node
 
-export var trigger_update = false setget set_update #setting this var to true, triggers an update
-func set_update(new_value):
-    trigger_update = new_value
-    if trigger_update:
-        trigger_update = false
-        update()
-        
-func update():
-    print(self, "run update functions here...")
+export var tool_update = false setget set_tool_update
+func set_tool_update(new_value):
+    tool_update = new_value
+    if tool_update:
+        tool_update()
+        tool_update = false
+
+
+func tool_update():
+    print(self, "run tool_update functions here...")
