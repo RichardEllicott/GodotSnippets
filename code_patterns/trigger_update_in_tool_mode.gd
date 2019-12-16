@@ -25,4 +25,5 @@ func set_tool_update(new_value):
 
 
 func tool_update():
+	_ready() # ensure vars are available
     print(self, "run tool_update functions here...")
