@@ -5,6 +5,11 @@ ported a simple hue shift using rotation (not as good as sextants)
 try full RED, shifted 60 degrees, this should be full yellow but it's a bit dark
 this is because of the sines used
 
+ADDED CORRECT HSB from book of shaders:
+    From https://thebookofshaders.com/06/
+    
+
+
 
 
 */
@@ -22,6 +27,7 @@ vec3 applyHue(vec3 aColor, float aHue){
     
     //formulae is fast but not 100% accurate
     //for example, shifting RED one sextant does not result in pure yellow
+    // actually results are (170,170,0) (darker yellow)
     
     float angle = radians(aHue);
     vec3 k = vec3(0.57735, 0.57735, 0.57735);
@@ -74,11 +80,48 @@ vec3 hsv_to_rgb(vec3 HSV){
     
 
 
+// From https://thebookofshaders.com/06/
+// requested on help: https://github.com/godotengine/godot/issues/18920
+vec3 rgb2hsb(vec3 c){
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    vec4 p = mix(vec4(c.bg, K.wz),
+                vec4(c.gb, K.xy),
+                step(c.b, c.g));
+    vec4 q = mix(vec4(p.xyw, c.r),
+                vec4(c.r, p.yzx),
+                step(p.x, c.r));
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)),
+                d / (q.x + e),
+                q.x);
+}
+
+vec3 hsb2rgb(vec3 c){
+    vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
+                    6.0)-3.0)-1.0,
+                    0.0,
+                    1.0 );
+    rgb = rgb*rgb*(3.0-2.0*rgb);
+    return c.z * mix(vec3(1.0), rgb, c.y);
+}
 
 
 
 void fragment() {
-    vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
-    c = applyHue(c, hue_shift);
+//    //ROTATION METHOD
+//    vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
+//    c = applyHue(c, hue_shift);
+//    COLOR.rgb = c;
+    
+    //CHANGE TO HSB, SHIFT, CHANGE BACK METHOD
+    vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb; //read
+    c = rgb2hsb(c); // rgb to hsb
+    c.x += hue_shift/360.0; // shift the hude
+    c = hsb2rgb(c);
     COLOR.rgb = c;
+    
+    
+    
+    
 }
