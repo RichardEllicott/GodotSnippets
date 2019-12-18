@@ -31,14 +31,46 @@ vec3 applyHue(vec3 aColor, float aHue){
     }
     
     
-vec3 applyHue2(){
-    // working on what i think is correct
+
+
+vec3 hsv_to_rgb(vec3 HSV){
+    /*
+    soruce:
+        https://gamedev.stackexchange.com/questions/28782/hue-saturation-brightness-contrast-effect-in-hlsl
+    
+    SEEMS WRONG!!!
+    
+    looking for a sextant capable shifting code
     
     
     
+    */
+
     
+    vec3 RGB = vec3(HSV.z,HSV.z,HSV.z);
+    
+    float h = (HSV.x+180.0)/60.0; //get a hue in the 0..5 interval from the -180 180 intv
+    float s = HSV.y;
+    float v = HSV.z;
+    
+    float i = floor(h);
+    float f = h - i;
+    
+    float p = (1.0 - s);
+    float q = (1.0 - s * f);
+    float t = (1.0 - s * (1.0 - f));
+    
+    if (i == 0.0) { RGB = vec3(1, t, p); }
+    else if (i == 1.0) { RGB = vec3(q, 1, p); }
+    else if (i == 2.0) { RGB = vec3(p, 1, t); }
+    else if (i == 3.0) { RGB = vec3(p, q, 1); }
+    else if (i == 4.0) { RGB = vec3(t, p, 1); }
+    else /* i == -1 */ { RGB = vec3(1, p, q); }
+    
+    RGB *= v;
+    
+    return RGB;
     }
-    
     
 
 
