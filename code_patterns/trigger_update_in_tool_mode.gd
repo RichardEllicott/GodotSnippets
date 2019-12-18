@@ -16,6 +16,9 @@ NOTE, we only use a "set" as there is no point to get this variable
 tool
 extends Node
 
+func _ready():
+    pass # Replace with function body.
+
 export var tool_update = false setget set_tool_update
 func set_tool_update(new_value):
     tool_update = new_value
