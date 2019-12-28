@@ -9,6 +9,10 @@ https://godotengine.org/qa/35276/tile-based-line-drawing-algorithm-efficiency
 the first float method seems to work the fastest
 
 
+
+my personal function at the bottom is designed to be more efficient and flexible
+
+
 """
 
 #Returns a set of points from p0 to p1 using linear interpolation
@@ -70,6 +74,11 @@ func my_interpolated_line(start, end = null):
     if start is Rect2: # overload Rect2
         end = start.size
         start = start.position
+
+    if start is Array: # overload, convert lists like [0,4]
+        start = Vector2(start[0],start[1])
+    if end is Array:
+        end = Vector2(end[0],end[1])
 
     var points = PoolVector2Array()
 
