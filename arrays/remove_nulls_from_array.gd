@@ -11,6 +11,12 @@ similar to how lua uses None, which introduces a hole within luas table system (
 This is useful as a dynamic programming pattern, the idea is to prevent resizing arrays too often under the hood
 In this pattern setting null is equivalent to deleting a record in a database for example (but the hole is still there)
 
+# EXAMPLE 1
+print(remove_nulls([1,2,null,3,null,'foo', null, 'bar'])) # [1, 2, 3, foo, bar]
+
+# EXAMPLE 2
+print(remove_match([1,-1,2,3,-1,4,-1,5],-1)) # [1, 2, 3, 4, 5]
+
 """
 
 func remove_nulls(input_array):
@@ -31,11 +37,9 @@ func remove_nulls(input_array):
     ret.resize(n) # chop array to final size
     return ret
 
-# EXAMPLE
-print(remove_nulls([1,2,null,3,null,'foo', null, 'bar'])) # [1, 2, 3, foo, bar]
 
 
-# an example of using this pattern:
+# an example of using this pattern in another function, that could remove matches from an array
 
 func remove_match(input_array, _match = -1):
 
@@ -51,5 +55,4 @@ func remove_match(input_array, _match = -1):
     ret = remove_nulls(ret) # strip the nulls with the null stripping function
     return ret
 
-# EXAMPLE
-print(remove_match([1,-1,2,3,-1,4,-1,5],-1)) # [1, 2, 3, 4, 5]
+
