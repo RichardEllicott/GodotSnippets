@@ -47,3 +47,35 @@ func line(p0, p1):
             err += dx
             p0[1] += sy
     return points
+
+
+
+
+func my_interpolated_line(start, end = null):
+
+    # uses floats and interpolation for speed
+    # returns a PoolVector2Array for less memory allocated
+    #   (make sure to convert back to int)
+    # OVERLOAD: can add a Rect2() instead of start and end
+
+    # this line is useful for fast line of sight on a grid
+    # but note:
+    #   line(start,end) != line(end,start)
+    # use it twice for rouguelike LOS
+
+    if start is Rect2: # overload Rect2
+        end = start.size
+        start = start.position
+
+    var points = PoolVector2Array()
+
+    var dx = end.x - start.x
+    var dy = end.y - start.y
+    var N = max(abs(dx), abs(dy))
+    for i in N + 1:
+        var t = float(i) / float(N)
+        points.append(Vector2(round(lerp(start.x, end.x, t)),
+            round(lerp(start.y, end.y, t))
+        ))
+    return points
+    
