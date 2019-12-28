@@ -50,6 +50,10 @@ func line(p0, p1):
 
 
 
+# i wrote this function to be a bit more effecient
+# it takes two Vector2() inputs (be sure not to use fractions)
+# it returns a pool array of Vector2's so it's easy to use (it's not a straight array of floats)
+# it has an overload, you can use a Rect2 instead of the Vector2's
 
 func my_interpolated_line(start, end = null):
 
@@ -78,4 +82,3 @@ func my_interpolated_line(start, end = null):
             round(lerp(start.y, end.y, t))
         ))
     return points
-    
