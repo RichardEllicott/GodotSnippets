@@ -4,7 +4,8 @@ useful for randomly distributing things naturally in 2D, can be used for a shotg
 
 """
 
-func ran_gaussian_2D(r1 = randf(), r2 = randf()):
+
+func ran_gaussian_2D(r1 = randf(), r2 = randf()) -> Vector2:
     """
     ported from the caltech lua one (i think, the link is dead!)
     http://www.design.caltech.edu/erik/Misc/Gaussian.html
@@ -13,11 +14,8 @@ func ran_gaussian_2D(r1 = randf(), r2 = randf()):
 
     ran_gaussian_2D(randf(),randf())
     """
-
     var al1 = sqrt(-2 * log(r1)) # part one
     var al2 = 2 * PI * r2 # part two
-
     var x = al1 * cos(al2)
     var y = al1 * sin(al2)
-
     return Vector2(x,y)
