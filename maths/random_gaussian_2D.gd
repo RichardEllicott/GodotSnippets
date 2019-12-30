@@ -4,7 +4,6 @@ useful for randomly distributing things naturally in 2D, can be used for a shotg
 
 """
 
-
 func ran_gaussian_2D(r1 = randf(), r2 = randf()):
     """
     ported from the caltech lua one (i think, the link is dead!)
