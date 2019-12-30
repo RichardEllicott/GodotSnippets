@@ -8,8 +8,7 @@ only use in the _physics_process(delta) function to avoid locks
 
 """
 
-var scan_pars # cache the query pars
-var scan_shape # cache the query shape to change radius
+
 func intersect_circle(_position,_radius):
 
     # easy function use like:
@@ -17,18 +16,14 @@ func intersect_circle(_position,_radius):
 
     # creates a circle at position
     # run in physics process
+    var _shape = CircleShape2D.new() # new circle
+    var _query = Physics2DShapeQueryParameters.new() # new query
+    _query.set_shape(_shape)
+    _shape.radius = _radius
+    _query.transform.origin = _position
+    return get_world_2d().get_direct_space_state().intersect_shape(_query)
 
-    var physics_state = get_world_2d().get_direct_space_state()
 
-    if not scan_pars: # cache
-        scan_shape = CircleShape2D.new()
-        scan_pars = Physics2DShapeQueryParameters.new()
-        scan_pars.set_shape(scan_shape)
-
-    scan_shape.radius = _radius
-    scan_pars.transform.origin = _position
-
-    return physics_state.intersect_shape(scan_pars)
 
 
 # for debugging, this will draw in the same position as the query
