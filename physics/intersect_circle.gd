@@ -2,6 +2,9 @@
 
 an easy to use physics query, creates the circle automatically
 
+returns a list of all the collisions
+
+only use in the _physics_process(delta) function to avoid locks
 
 """
 
