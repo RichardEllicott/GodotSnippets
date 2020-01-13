@@ -25,8 +25,11 @@ enum Preset{ # use a capital letter for the enumerator list itself
 export(Preset) var preset = Preset.none setget set_preset # use small letters for the var, "preset" is the key
 
 func set_preset(value):
-	# if the preset loads instances, you may concider freeing previous ones here
+    
     if value != preset:
+
+        # concider adding reset code here, setting defaults, removing instances etc to avoid issues
+
         preset = value
         var preset_name = Preset.keys()[value] # gets the string name of the preset
 #        print("%s sets preset to: %s (%s)" % [self,preset,preset_name]) # debug
@@ -34,11 +37,13 @@ func set_preset(value):
         if has_method(method_string):
             call(method_string)
 
+        # concider adding final refersh code here, calling update() etc to redrawn the screen
+
 func preset_none():
     print(self, "calling preset_none...")
 
 func preset_preset1(): # the key name ("preset"), is prepended before an underscore and the enumerator name
-	# run functions that make this preset, ie you could set colours and styles
+    # run functions that make this preset, ie you could set colours and styles
     print(self, "calling preset_preset1...")
 
 
