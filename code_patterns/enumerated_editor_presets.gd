@@ -9,8 +9,15 @@ When a preset is selected by the designer, it triggers an update that loads a ma
 for example if the preset name is "preset1" then we will check if a function "preset_preset1" exists, and run it
 
 
-
 this is useful when you might have different collections of settings and behaviors to load quick and test
+
+
+
+NOTE: This is an example of using reflection to reduce typing, to add a new preset you just need to add
+    a new enumerator
+    and a matching function
+
+this avoids a giant match statement
 
 
 """
