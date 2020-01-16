@@ -1,16 +1,17 @@
 """
 
-build a list of children and sub-children, i find this easy to find all children in a scene (note though groups may be faster)
+build a list of children and sub-children, i find this easy to find all children in a scene (though groups may be faster)
 
+this pattern works by recursion (passing itself back to itself)
 
-this pattern works by recursing (passing itself back to itself)
 
 
 """
 
-func get_children_recursive(root):
-    var array = [] # return array 
-    for child in root.get_children():
-        array.append(child) # append this child
-        array += get_children_recursive(child) # append results of recursing on children of the child
+func get_children_recursive(root, depth = 0):
+    var array = []
+    if depth < 8:
+        for child in root.get_children():
+            array.append(child)
+            array += get_children_recursive(child, depth + 1) # append results of recursing on children of the child
     return array
