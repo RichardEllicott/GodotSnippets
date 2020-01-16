@@ -4,8 +4,6 @@ build a list of children and sub-children, i find this easy to find all children
 
 this pattern works by recursion (passing itself back to itself)
 
-
-
 """
 
 func get_children_recursive(root, depth = 0):
