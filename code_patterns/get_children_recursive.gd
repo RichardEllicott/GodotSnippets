@@ -1,6 +1,9 @@
 """
 
-build a list of children and sub-children
+build a list of children and sub-children, i find this easy to find all children in a scene (note though groups may be faster)
+
+
+this pattern works by recursing (passing itself back to itself)
 
 
 """
