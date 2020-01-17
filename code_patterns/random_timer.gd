@@ -1,7 +1,6 @@
 """
 
-quick paste timer
-
+quick paste random timer
 
 """
 
@@ -16,4 +15,4 @@ func _process(delta):
     if timer > current_delay:
         timer -= current_delay
         current_delay = delay + randf() * random_delay
-        _ready()
+        # run code here!
