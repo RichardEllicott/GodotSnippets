@@ -9,6 +9,8 @@ Edit->Preferences:
 This should also ensure the period (.) zooms to the current selection (on some blender versions may need to be set manually)
 
 
+
+
 Important Shortcuts (i tend to forget), note I used 27X shortcuts:
 
 
