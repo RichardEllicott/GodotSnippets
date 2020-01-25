@@ -1,0 +1,28 @@
+Blender 2.8.1, setting up my preferences:
+
+Edit->Preferences:
+	->Keymap->Blender27X
+	->Preferences->Select with RMB
+	->Input->Keyboard->Emulate Numpad (for laptop)
+
+
+This should also ensure the period (.) zooms to the current selection (on some blender versions may need to be set manually)
+
+
+Important Shortcuts (i tend to forget), note I used 27X shortcuts:
+
+
+SHIFT+CTRL+ALT (enables you to set the origin of an object the the 3D cursor or other places)
+SHIFT+F (fly mode)
+ALT+F (moves the view to the 3D cursor
+CTRL+ALT+0 (set camera to view (works cool pressing NUM1 for flat position first))
+CTRL+L copy modifiers from last selected to others
+
+
+SHIFT+S (to move 3D cursor to origin)
+SHIFT+C (reset 3D cursor)
+
+seemed to be okay:
+https://kapeli.com/cheat_sheets/Blender.docset/Contents/Resources/Documents/index
+
+

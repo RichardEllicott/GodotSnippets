@@ -1,0 +1,1 @@
+This folder is of personal shortcuts etc related to Godot development.
