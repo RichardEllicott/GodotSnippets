@@ -18,6 +18,11 @@ This should also ensure the period (.) zooms to the current selection (on some b
 
 Important Shortcuts (i tend to forget), note I used 27X shortcuts:
 
+Front (orographic) 1
+Right (orographic) 3
+Top (orographic) 7
+
+
 
 SHIFT+CTRL+ALT (enables you to set the origin of an object the the 3D cursor or other places)
 SHIFT+F (fly mode)
@@ -25,6 +30,7 @@ ALT+F (moves the view to the 3D cursor
 CTRL+ALT+0 (set camera to view (works cool pressing NUM1 for flat position first))
 CTRL+L copy modifiers from last selected to others
 
+ALT+C (convert metaballs to mesh (convert mesh))
 
 SHIFT+S (to move 3D cursor to origin)
 SHIFT+C (reset 3D cursor)
