@@ -1,9 +1,14 @@
-Blender 2.8.1, setting up my preferences:
+Blender 2.81, setting up my preferences:
 
 Edit->Preferences:
 	->Keymap->Blender27X
 	->Preferences->Select with RMB
 	->Input->Keyboard->Emulate Numpad (for laptop)
+
+
+I like the grid to be divided by 8 squares (for doubling sizes)
+Blenders 2.81 overlays menu is at the top right of the viewport, to the left of the shading and xray buttons, it looks like two circles overlaying each other. The dropdown next to it allows setting this.... HOWEVER IT DOES NOT WORK until 2.82 :(
+source: https://blender.stackexchange.com/questions/159776/how-to-change-grid-subdivisions-2-81
 
 
 This should also ensure the period (.) zooms to the current selection (on some blender versions may need to be set manually)
