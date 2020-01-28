@@ -29,6 +29,7 @@ SHIFT+F (fly mode)
 ALT+F (moves the view to the 3D cursor
 CTRL+ALT+0 (set camera to view (works cool pressing NUM1 for flat position first))
 CTRL+L copy modifiers from last selected to others
+CMD+A (apply modifiers like rotation and scale etc)
 
 ALT+C (convert metaballs to mesh (convert mesh))
 
@@ -62,6 +63,20 @@ On average, American architects have used a standard stair height of 7.5 inches 
 
 Stair better:
 5 Answers. The general rule (in the US) is 7-11 (a 7 inch rise and 11 inch run) (17.78cm-27.94cm). More exactly, no more than 7 3/4 inches (19.7cm) for the riser
+
+
+Walls:
+Average Wall Width of Interior Walls
+Most interior walls are constructed with 2-by-4 framing, and each 2-by-4 has a nominal width of 3 1/2 inches. Drywall typically covers both sides, and it's usually 1/2 inch thick, which makes the wall 4 1/2 inches (11.43 cm) thick.10 Sep 2019
+
+Eternal Wall:
+The thickness of a wall can be measured at a door or window. A solid wall will be 23cm (9") thick plus internal plastering and external rendering (if any) and a cavity wall 30cm (11.5") plus plastering and rendering (if any).
+
+Walls that are made with rough (undressed) pieces of stone are called random rubble walls. For brick walls, a common thickness is 230mm(9"), and for concrete block walls, common thicknesses are 200mm(8"), 150mm(6") and 100mm(4").
+
+
+
+
 
 
 
