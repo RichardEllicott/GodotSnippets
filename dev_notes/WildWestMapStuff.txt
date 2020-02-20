@@ -1,0 +1,15 @@
+
+
+
+General Store
+Stable
+Well (leading to passage)
+Blacksmith
+Sheriff (with prison)
+Church (with graveyard)
+Saloon
+Water Tower
+
+?:
+
+Taylor

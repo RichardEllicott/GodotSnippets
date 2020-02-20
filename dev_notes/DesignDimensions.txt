@@ -1,0 +1,61 @@
+
+World scale notes:
+
+American Doors:
+
+One of the most common front door sizes in American houses is 36 inches (91.44 cm) wide by 80 inches (203.2 cm) tall, and almost 2 inches (5.08 cm) thick. However, not all doors will have these measurements. Doors can be as narrow as 30 inches (76.2 cm) and as tall as 96 inches (2.4384 m), and thickness can depend on the door material.
+
+People:
+
+Males average height: 171 cm
+Female: 159 cm
+Trump: 190 cm
+
+Office building quick: use 4 meters per a floor, 1 meter gap, would contain ducting, plumbing, steel infrastructure and flooring
+I make the floor level with the 0 plane (lower the outside pavement)
+I use stairs that are 4 steps per a meter, that means they're 25 cm tall
+
+
+Standard Step Height
+On average, American architects have used a standard stair height of 7.5 inches (19.05 cm) . On stairs built inside, the average step length is 9 inches (22.86 cm) tall, while outside steps have an average length of 11 (27.94 cm) inches tall
+
+Stair better:
+5 Answers. The general rule (in the US) is 7-11 (a 7 inch rise and 11 inch run) (17.78cm-27.94cm). More exactly, no more than 7 3/4 inches (19.7cm) for the riser
+
+
+Walls:
+Average Wall Width of Interior Walls
+Most interior walls are constructed with 2-by-4 framing, and each 2-by-4 has a nominal width of 3 1/2 inches. Drywall typically covers both sides, and it's usually 1/2 inch thick, which makes the wall 4 1/2 inches (11.43 cm) thick.10 Sep 2019
+
+Eternal Wall:
+The thickness of a wall can be measured at a door or window. A solid wall will be 23cm (9") thick plus internal plastering and external rendering (if any) and a cavity wall 30cm (11.5") plus plastering and rendering (if any).
+
+Walls that are made with rough (undressed) pieces of stone are called random rubble walls. For brick walls, a common thickness is 230mm(9"), and for concrete block walls, common thicknesses are 200mm(8"), 150mm(6") and 100mm(4").
+
+
+
+Average House Beam:
+The standard size of beam is  (22.86 cm)″x12 30.48( cm)″, which is usually used in many of the residential building.
+
+Bar Height:
+In general, the standard bar height is 42 inches (106.68 cm), but kitchen bar height does vary. Some bars are 36 inches high (91.44 cm) — the height of a regular kitchen counter — while others feature a raised element that brings part of the counter up to the standard bar height.
+
+BarDepth:
+Typically a bar top that is a minimum of 18 inches (45.72 cm) deep works well, but you can extend this to 2 (50.8 cm) to 24 (60.96 cm) inches to allow more space for larger sinks and fixtures.
+
+Wine Glass:
+The typical red or white wine glass is seven to eight inches tall on average, though glasses can range in height from four inches (cordials) to 10 or more inches (25.4 cm).
+
+
+
+
+
+
+
+
+
+
+
+
+
+

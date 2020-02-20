@@ -1,0 +1,19 @@
+
+
+wild west textures:
+
+
+WoodSiding5_2x2 # walls, planks
+
+Wood_LogSiding # log cabins, log supports
+
+PlainRust1C_1x1 # rusted metal things
+
+Roofing_WoodPlanks2 # rustic roofing, like barns etc
+
+Soil3_3x3 # outside ground, underground tunnels
+
+Rock_CliffDesert2 # rock
+
+
+

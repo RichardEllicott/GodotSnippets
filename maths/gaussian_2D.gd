@@ -8,6 +8,12 @@ useful for randomly distributing things naturally in 2D, can be used for a shotg
 
 TODO: Add 1D and 3D functions
 
+some lead to a 1D gaussian:
+https://github.com/pgoral/Godot-Gaussian-Random/blob/master/GaussianRandom.gd
+
+
+
+
 
 """
 

@@ -1,0 +1,17 @@
+
+
+cool blender tricks:
+
+
+projecting planes onto a sphere:
+
+https://blender.stackexchange.com/questions/24043/how-to-animate-morphing-a-rectangular-plane-into-a-sphere/24053#24053
+
+arches:
+https://blender.stackexchange.com/questions/21698/how-would-i-create-an-arch
+
+
+
+vothic arch, bridge edge loops:
+https://www.youtube.com/watch?v=W8aw3bQoArg
+
