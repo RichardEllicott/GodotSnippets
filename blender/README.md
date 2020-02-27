@@ -1,0 +1,1 @@
+blender templates that should work for gltf
