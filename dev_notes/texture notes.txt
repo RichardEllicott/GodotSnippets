@@ -17,3 +17,15 @@ Rock_CliffDesert2 # rock
 
 
 
+
+Rock_CliffGranite4 # tome stone
+
+
+
+
+
+
+
+
+WoodSiding4_1x1 # wood floor
+

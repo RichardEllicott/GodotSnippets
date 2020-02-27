@@ -2,14 +2,38 @@
 
 
 General Store
+
 Stable
 Well (leading to passage)
 Blacksmith
 Sheriff (with prison)
-Church (with graveyard)
+Church (with graveyard and bell tower)
 Saloon
 Water Tower
 
 ?:
 
 Taylor
+Train Station and Track
+
+
+Stuff:
+Chickens or Bunnies
+
+
+
+Test Doom Enemies (for prototyping)
+
+https://zdoom.org/wiki/Classes:WolfensteinSS
+
+
+
+
+Ai States:
+
+idle # seems like ambush
+wander # randomly wanders around
+attacking # moves towards player's location (even if not visible)   OR    move towards players last seen location
+
+
+
