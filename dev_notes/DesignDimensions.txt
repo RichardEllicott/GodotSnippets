@@ -22,6 +22,12 @@ On average, American architects have used a standard stair height of 7.5 inches 
 Stair better:
 5 Answers. The general rule (in the US) is 7-11 (a 7 inch rise and 11 inch run) (17.78cm-27.94cm). More exactly, no more than 7 3/4 inches (19.7cm) for the riser
 
+approximates:
+	6 stairs
+		1/6 (166.6 mm) rise
+		1/3 (333.3 mm) depth
+
+
 
 Walls:
 Average Wall Width of Interior Walls
@@ -31,6 +37,11 @@ Eternal Wall:
 The thickness of a wall can be measured at a door or window. A solid wall will be 23cm (9") thick plus internal plastering and external rendering (if any) and a cavity wall 30cm (11.5") plus plastering and rendering (if any).
 
 Walls that are made with rough (undressed) pieces of stone are called random rubble walls. For brick walls, a common thickness is 230mm(9"), and for concrete block walls, common thicknesses are 200mm(8"), 150mm(6") and 100mm(4").
+
+
+Brickwork:
+Standard bricks
+The standard co-ordinating size for brickwork is 225 mm x 112.5 mm x 75 mm (length x depth x height). This includes 10 mm mortar joints, and so the standard size for a brick itself is 215 mm x 102.5 mm x 65 mm (length x depth x height)
 
 
 
@@ -47,6 +58,13 @@ Wine Glass:
 The typical red or white wine glass is seven to eight inches tall on average, though glasses can range in height from four inches (cordials) to 10 or more inches (25.4 cm).
 
 
+
+
+Upright Headstones
+They are usually made from granite, marble or limestone and are fixed to the ground with a concrete base. They are typically 45 inches (114.3 cm) tall, 30 inches (76.2 cm) wide and 6 inches (15.24 cm) deep. Image caption: A typical upright headstone.
+
+Street Lamp Posts
+In most cases, street pole heights range from 9 (274.32 cm) to 14 feet (426.72 cm). Ideally, the street light pole should provide sufficient light without there being an excessive glare.
 
 
 
