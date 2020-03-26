@@ -4,7 +4,7 @@ GridDoubleScaleHotkeys v 1.0 (finished 26/03/2020)
 
 Blender addon that adds shortcuts to blender to double and half the grid scale similar to Doom level editors
 
-suggested to be bound to the NUMPAD_PLUS and NUMPAD_MINUS keys, usually they are redundant for zooming next to the mouse wheel
+shortcuts are assigned to NUMPAD_PLUS and NUMPAD_MINUS keys, usually they are redundant for zooming next to the mouse wheel
 
 
 based on templates:
@@ -26,7 +26,7 @@ https://docs.blender.org/api/current/bpy.types.AddonPreferences.html?highlight=a
 """
 # Preferences:
 
-double_key_shortcut = "NUMPAD_PLUS" 
+double_key_shortcut = "NUMPAD_PLUS" # you can change the hot keys here
 half_key_shortcut = "NUMPAD_MINUS"
 
 # Begin Plugin
