@@ -7,6 +7,9 @@ Blender addon that adds shortcuts to blender to double and half the grid scale s
 shortcuts are assigned to NUMPAD_PLUS and NUMPAD_MINUS keys, usually they are redundant for zooming next to the mouse wheel
 
 
+it is suggested to set the grid subdivisions to 8 (for a less confusing look), which to do you must first set the scene properties units to "none" instead of the default (metric)
+
+
 based on templates:
 
 https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html
