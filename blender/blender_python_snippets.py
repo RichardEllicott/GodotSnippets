@@ -40,8 +40,10 @@ def remove_scene_objects(key=None):
             bpy.data.objects.remove(ob, do_unlink=True)  # best option to delete, unlink first
 
 
-def deselect_all():
-    bpy.ops.object.select_all(action='DESELECT')
+
+def select_all(): bpy.ops.object.select_all(action='SELECT')
+
+def deselect_all(): bpy.ops.object.select_all(action='DESELECT')
 
 def select_object(ob): #https://devtalk.blender.org/t/selecting-an-object-in-2-8/4177
     ob.select_set(state=True)
@@ -49,7 +51,58 @@ def select_object(ob): #https://devtalk.blender.org/t/selecting-an-object-in-2-8
 
 
 
-#LINKING OBJECT DATA
+def edit_mode():
+    bpy.ops.object.mode_set(mode='EDIT')
+
+def object_mode():
+    bpy.ops.object.mode_set(mode='OBJECT')
+
+def apply_transform(location = True, scale = True, rotation = True):
+    bpy.ops.object.transform_apply(location = location, scale = scale, rotation = rotation) # apply transform
+
+
+
+
+def set_grid_scale(scale = 1):
+    """
+    sets the grid scale in the UI
+    https://blender.stackexchange.com/questions/154610/how-do-you-programatically-set-grid-scale
+
+    warning may be obsolete
+    """
+    AREA = 'VIEW_3D'
+    for window in bpy.context.window_manager.windows:
+        for area in window.screen.areas:
+            if not area.type == AREA:
+                continue
+            for s in area.spaces:
+                if s.type == AREA:
+                    s.overlay.grid_scale = scale
+                    break
+
+def get_grid_scale():
+    """
+    returns grid scale as a float
+    """
+    AREA = 'VIEW_3D'
+    for window in bpy.context.window_manager.windows:
+        for area in window.screen.areas:
+            if not area.type == AREA:
+                continue
+            for s in area.spaces:
+                if s.type == AREA:
+                    return s.overlay.grid_scale
+
+
+def half_grid_scale():
+    set_grid_scale(get_grid_scale()/2.0)
+
+def double_grid_scale():
+    set_grid_scale(get_grid_scale()*2.0)
+
+
+"""
+#LINKING OBJECT DATA NOTES HERE NOT YET SNIPPETED
 # https://blender.stackexchange.com/questions/4878/how-to-copy-modifiers-with-attribute-values-from-active-object-to-selected-objec
 
 import bpy
@@ -64,7 +117,7 @@ modable_obj.select = True
 bpy.ops.object.make_links_data(type='MODIFIERS')
 
 bpy.ops.object.select_all(action='DESELECT')
-
+"""
 
 
 
