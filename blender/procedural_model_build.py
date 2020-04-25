@@ -33,7 +33,8 @@ assert(modifiers_template)
 
 
 
-def remove_object(ob): bpy.data.objects.remove(ob, do_unlink=True) # remove an object from scene (note, reload to fully clear memory)
+def remove_object(ob):
+    bpy.data.objects.remove(ob, do_unlink=True) # remove an object from scene (note, reload to fully clear memory)
 
 def remove_scene_objects(key=None):
     """
