@@ -11,7 +11,7 @@ Blenders 2.81 overlays menu is at the top right of the viewport, to the left of 
 source: https://blender.stackexchange.com/questions/159776/how-to-change-grid-subdivisions-2-81
 
 
-This should also ensure the period (.) zooms to the current selection (on some blender versions may need to be set manually)
+This should also ensure the period (.) zooms to the current selection (command name: View Selected)
 
 
 
