@@ -2,8 +2,6 @@
 
 build a list of children and sub-children, i find this easy to find all children in a scene (though groups may be faster)
 
-this pattern works by recursion (passing itself back to itself)
-
 """
 
 func get_children_recursive(root, depth = 0):
