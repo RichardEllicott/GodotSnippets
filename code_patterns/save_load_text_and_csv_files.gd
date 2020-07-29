@@ -63,7 +63,7 @@ func save_csv_file(path, nested_lists):
 
     for example:
         [["Bob", 21], ["Greg", 35]]
-        
+
     results in file:
         Bob,21
         Greg,53
@@ -77,6 +77,40 @@ func save_csv_file(path, nested_lists):
     for row in nested_lists:
         f.store_csv_line(row)
     f.close()
+
+
+
+func load_table_file(path):
+    """
+    a table file is a csv file with headers (the top row is keys) ie:
+
+        name, age, sex
+        Bob, 34, male
+        Phil, 45, male
+        Janet, 33, female
+
+    it will load as a list of dictionary's
+
+    this is useful for loading a table as pseudo objects easily saved in json
+
+    [{name: Bob, age: 32, sex: male}...
+    """
+
+    var ret = []
+
+    var csv = load_csv_file(path)
+
+    var keys = csv[0]
+
+    for i in csv.size():
+        var entry = {}
+        var row = csv[i]
+        if i != 0:
+            for i2 in row.size():
+                entry[keys[i2]] = row[i2]
+        ret.append(entry)
+
+    return ret
 
 
 
