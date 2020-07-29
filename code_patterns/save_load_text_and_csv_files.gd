@@ -56,3 +56,29 @@ func load_csv_file(path):
     return ret
 
 
+
+func save_csv_file(path, nested_lists):
+    """
+    save nested lists to csv
+
+    for example:
+        [["Bob", 21], ["Greg", 35]]
+        
+    results in file:
+        Bob,21
+        Greg,53
+
+    """
+    var f = File.new()
+    var err = f.open(path, File.WRITE)
+    if err != OK:
+        printerr("Could not write file, error code ", err)
+        return
+    for row in nested_lists:
+        f.store_csv_line(row)
+    f.close()
+
+
+
+
+
