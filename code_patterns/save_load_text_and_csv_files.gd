@@ -1,5 +1,5 @@
 """
-save load text files
+save load text and csv files easy functions
 
 
 https://godotengine.org/qa/52307/can-you-read-a-textfile-resource-with-gdscript
