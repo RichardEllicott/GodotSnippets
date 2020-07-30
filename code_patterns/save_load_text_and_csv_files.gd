@@ -80,18 +80,20 @@ func save_csv_file(path, nested_lists):
 
 
 
+
+
 func load_table_file(path):
     """
-    a table file is a csv file with headers (the top row is keys) ie:
+    a table file is a csv file with headers ie:
 
         name, age, sex
         Bob, 34, male
         Phil, 45, male
         Janet, 33, female
 
-    it will load as a list of dictionary's
+    it will load as a list of dictionarys
 
-    this is useful for loading a table as pseudo objects easily saved in json
+    this is useful for loading a table as pseudo objects
 
     [{name: Bob, age: 32, sex: male}...
     """
@@ -108,10 +110,11 @@ func load_table_file(path):
         if i != 0:
             for i2 in row.size():
                 entry[keys[i2]] = row[i2]
-        ret.append(entry)
+
+        if entry.size() > 0: # only add records with keys
+            ret.append(entry)
 
     return ret
-
 
 
 

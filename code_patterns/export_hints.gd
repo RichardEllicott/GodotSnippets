@@ -14,3 +14,6 @@ export(String, FILE, "*.tscn,*.scn") var scene_file = ""
 
 # export to choose a local folder
 export(String, DIR) var folder_path = ""
+
+
+export(PackedScene) var packed_scene # normal way of loading packed scene
