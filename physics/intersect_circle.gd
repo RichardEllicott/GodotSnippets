@@ -8,20 +8,23 @@ only use in the _physics_process(delta) function to avoid locks
 
 """
 
-
 func intersect_circle(_position,_radius):
+    """
+    easy function use like:
+        intersect_circle(global_position, 16.0)
 
-    # easy function use like:
-    #   intersect_circle(global_position, 16.0)
-
-    # creates a circle at position
-    # run in physics process
+    creates a circle at position
+    run in physics process
+    """
     var _shape = CircleShape2D.new() # new circle
+    #docs for the pars: https://docs.godotengine.org/en/stable/classes/class_physicsshapequeryparameters.html
     var _query = Physics2DShapeQueryParameters.new() # new query
+    _query.collide_with_areas = true # if you want to detect areas
     _query.set_shape(_shape)
     _shape.radius = _radius
     _query.transform.origin = _position
     return get_world_2d().get_direct_space_state().intersect_shape(_query)
+
 
 
 
