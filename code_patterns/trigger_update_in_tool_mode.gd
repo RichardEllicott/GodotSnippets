@@ -20,9 +20,8 @@ func _ready():
     pass # Replace with function body.
 
 export var tool_update = false setget set_tool_update
-func set_tool_update(new_value):
-    tool_update = new_value
-    if tool_update:
+func set_tool_update(input):
+    if input:
         tool_update()
         tool_update = false
 
@@ -30,3 +29,9 @@ func set_tool_update(new_value):
 func tool_update():
 	_ready() # ensure vars are available
     print(self, "run tool_update functions here...")
+
+
+
+
+
+
