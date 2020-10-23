@@ -27,6 +27,18 @@ func get_vs_ci_rid(layer = 0):
         VisualServer.canvas_item_set_parent(vs_ci_rids[layer], get_canvas_item()) # Make this node the parent.
     return vs_ci_rids[layer]
 
+func vs_clear_resources():
+    """
+    clears all the canvases cids, freeing memory
+    """
+    if vs_ci_rids:
+        for key in vs_ci_rids:
+            var cid = vs_ci_rids[key]
+            VisualServer.canvas_item_clear(cid)
+
+
+
+
 # clear a canvas layer
 func vs_clear_canvas(layer=0):
     VisualServer.canvas_item_clear(get_vs_ci_rid(layer))
@@ -83,6 +95,13 @@ func vs_draw_texture_rect(texture,rect,modulate=Color.white,layer=0):
 
     VisualServer.canvas_item_add_texture_rect(get_vs_ci_rid(layer), rect, texture,false,modulate)
 
+
+
+
+func _notification(what):
+    if what == NOTIFICATION_PREDELETE:
+        # called when the node is destroyed
+        vs_clear_resources() # clear the VisualServer canvases
 
 
 
