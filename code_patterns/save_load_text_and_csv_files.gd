@@ -119,3 +119,46 @@ func load_table_file(path):
 
 
 
+
+func load_table_file_as_dict(path):
+    """
+    load a csv table as a database such that the top row is the keys (NEW ADDED 26/11/2020)
+    
+    subsequent rows are entries
+    the first row is the id
+    
+    e.g INPUT:
+    
+    name, age, sex
+    bob, 23, male
+    joe, 32, male
+    
+    """
+
+    var ret = {} # return a dictionary of the entries
+
+    var data = load_csv_file(path)
+
+    var header_row = []
+    if data.size() >= 2: # must be 2 or more rows
+
+        for i in data.size():
+            var row = data[i]
+
+            var row_key = row[0]
+
+            if i == 0:
+                header_row = row
+            else:
+                var row_dict = {}
+                for i2 in row.size():
+                    var val = row[i2]
+
+                    row_dict[header_row[i2]] = val
+
+                ret[row_key] = row_dict
+
+    return ret
+
+
+
