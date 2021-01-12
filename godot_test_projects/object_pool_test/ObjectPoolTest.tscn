@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://EEGodotV10/projects/object_pool_test/ObjectPoolTest_BulletScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://EEGodotV10/projects/object_pool_test/BulletSpawnerWithPool.gd" type="Script" id=2]
+[ext_resource path="res://EEGodotV10/projects/object_pool_test/FPSLabel2.gd" type="Script" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BulletSpawner" type="Node2D" parent="."]
+position = Vector2( 266.152, 187.872 )
+script = ExtResource( 2 )
+packed_bullet_scene = ExtResource( 1 )
+enable_pooling = true
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 0, 3.88739 )
+polygon = PoolVector2Array( 533.833, 117.083, 532.454, 231.507, 648.257, 272.865, 706.158, 179.12, 653.771, 104.676 )
