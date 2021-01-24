@@ -63,6 +63,9 @@ func _ready():
 
     make_cube(0,0,0)
 
+    make_sector_wall(Vector2(),Vector2(3,3))
+
+    make_sector_wall(Vector2(3,3),Vector2(6,3))
 
     # WORKING QUAD TEST!!
 #    make_quad(
@@ -121,6 +124,12 @@ func make_cube(x,y,z):
     #front
     make_quad(Vector3(x,y,z+1), Vector3(x,y+1,z+1), Vector3(x+1,y+1,z+1), Vector3(x+1,y,z+1))
 
+
+
+export var world_uv = true
+
+var uv_scale = 1.0
+
 func make_quad(a,b,c,d):
     var length = len(verts)
     indices.append_array([
@@ -130,6 +139,7 @@ func make_quad(a,b,c,d):
         length,
         length+2,
         length+3])
+
     verts.append_array([a,b,c,d])
 
     if smooth_shading:
@@ -140,47 +150,92 @@ func make_quad(a,b,c,d):
             d.normalized()])
     else:
 
-        var normal_vec
-
-
-#        CROSS PRODUCT METHOD WORKS
-        # KEPT FOR RECORD
-        """
-        var crossB = b - a
-        var crossA = c - a
-        normal_vec = crossA.cross(crossB)
-        normal_vec = normal_vec.normalized()
-        print(normal_vec)
-        """
-        # SET NORMAL MANUAL WORKAROUND
-#        normal_vec = Vector3(0,0,1)
-
-
-        var pl = Plane(a,b,c)
-        normal_vec = pl.normal
-#        print("SSSS", pl, normal_vec)
+        var normal_vector = Plane(a,b,c).normal
 
         normals.append_array([
-            normal_vec,
-            normal_vec,
-            normal_vec,
-            normal_vec])
-
-
-    # NOT CORRECT?!?
-    uvs.append_array([
-        Vector2(0.0,0.0),
-        Vector2(1.0,0.0),
-        Vector2(1.0,1.0),
-        Vector2(0.0,1.0)
-     ])
+            normal_vector,
+            normal_vector,
+            normal_vector,
+            normal_vector])
 
 
 
-# https://www.khronos.org/opengl/wiki/Calculating_a_Surface_Normal#:~:text=A%20surface%20normal%20for%20a,of%20the%20face%20w.r.t.%20winding).
 
 
-# https://digitalki.net/2019/07/01/prpocedurally-generate-meshes-with-godot-3-1-different-approaches/
+    if world_uv: # UV based on world coordinates
+
+        var normal_vector = Plane(a,b,c).normal
+
+        var direction = -1
+        var largest_val = -1
+
+        normal_vector.x = abs(normal_vector.x)
+        normal_vector.y = abs(normal_vector.y)
+        normal_vector.z = abs(normal_vector.z)
+
+        if normal_vector.x > largest_val:
+            direction = 0
+            largest_val = normal_vector.x
+        if normal_vector.y > largest_val:
+            direction = 1
+            largest_val = normal_vector.y
+        if normal_vector.z > largest_val:
+            direction = 2
+            largest_val = normal_vector.z
+
+#        direction = 2
+
+        match direction:
+
+            0:
+                # Project X
+                uvs.append_array([
+                    Vector2(a.y*uv_scale,a.z*uv_scale),
+                    Vector2(b.y*uv_scale,b.z*uv_scale),
+                    Vector2(c.y*uv_scale,c.z*uv_scale),
+                    Vector2(d.y*uv_scale,d.z*uv_scale)
+                ])
+
+            1:
+                # Project Y
+                uvs.append_array([
+                    Vector2(a.x*uv_scale,a.z*uv_scale),
+                    Vector2(b.x*uv_scale,b.z*uv_scale),
+                    Vector2(c.x*uv_scale,c.z*uv_scale),
+                    Vector2(d.x*uv_scale,d.z*uv_scale)
+                ])
+
+            2:
+                # Project Z
+                uvs.append_array([
+                    Vector2(a.x*uv_scale,a.y*uv_scale),
+                    Vector2(b.x*uv_scale,b.y*uv_scale),
+                    Vector2(c.x*uv_scale,c.y*uv_scale),
+                    Vector2(d.x*uv_scale,d.y*uv_scale)
+                ])
+
+
+
+
+
+
+
+
+
+
+
+
+
+    else: # Default UV
+
+        uvs.append_array([
+            Vector2(0.0, 0.0),
+            Vector2(uv_scale, 0.0),
+            Vector2(uv_scale, uv_scale),
+            Vector2(0.0, uv_scale)
+        ])
+
+
 
 func make_triangle(a,b,c):
 
@@ -220,13 +275,8 @@ func make_triangle(a,b,c):
     pass
 
 
-
-
 func make_floor(coors):
-
-
     pass
-
 
 func make_sector_wall(from, to, floor_elevation = 0.0, wall_height = 1.0):
 
