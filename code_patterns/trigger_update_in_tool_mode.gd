@@ -33,6 +33,7 @@ func tool_update():
 	_ready() # ensure vars are available
     print(self, "run tool_update functions here...")
 
+    # EXAMPLES:
     for child in get_children(): # WARNING delete all children example!
         child.queue_free()
 
