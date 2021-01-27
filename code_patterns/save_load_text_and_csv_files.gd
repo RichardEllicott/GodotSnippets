@@ -7,6 +7,8 @@ https://godotengine.org/qa/52307/can-you-read-a-textfile-resource-with-gdscript
 
 """
 
+export(String, DIR) var folder_path = "" # export a path to file example
+
 
 func load_text_file(path):
     """
