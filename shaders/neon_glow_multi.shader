@@ -30,10 +30,6 @@ uniform float blur_mix : hint_range(0, 1);
 uniform bool enable_hue_shift = false;
 uniform float hue_shift = 0.0;
 
-vec3 bob(){
-    return vec3(0.0,0.0,0.0);
-    }
-
 vec3 apply_hue(vec3 aColor, float aHue){
     
     // very simply hue shift using "Rodrigues' rotation formula"
