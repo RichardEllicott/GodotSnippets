@@ -1,0 +1,49 @@
+"""
+
+query in 3D space, should return static colliders
+
+
+sill unsure about why we get repeat results, the dictionary being returned is to prune repeated results
+
+
+"""
+
+
+
+func _physics_intersect_cube(var pos = Vector3(), extents = Vector3(1.0,1.0,1.0)):
+
+    var _shape = BoxShape.new() # new cube
+    #docs for the pars: https://docs.godotengine.org/en/stable/classes/class_physicsshapequeryparameters.html
+    var _query = PhysicsShapeQueryParameters.new() # new query
+    # _query.collide_with_areas = true # if you want to detect areas
+    _query.set_shape(_shape)
+    _shape.extents = extents
+#    _shape.radius = _radius
+    _query.transform.origin = pos
+    var results = get_world().get_direct_space_state().intersect_shape(_query)
+
+    var ret = {}
+    for result in results:
+        ret[result.collider] = null
+    return ret
+
+
+
+func _physics_intersect_sphere(var pos = Vector3(), radius = 1.0):
+
+    var _shape = SphereShape.new() # new sphere
+    #docs for the pars: https://docs.godotengine.org/en/stable/classes/class_physicsshapequeryparameters.html
+    var _query = PhysicsShapeQueryParameters.new() # new query
+    # _query.collide_with_areas = true # if you want to detect areas
+    _query.set_shape(_shape)
+    _shape.radius = radius
+#    _shape.radius = _radius
+    _query.transform.origin = pos
+    var results = get_world().get_direct_space_state().intersect_shape(_query)
+
+    var ret = {}
+    for result in results:
+        ret[result.collider] = null
+    return ret
+
+
