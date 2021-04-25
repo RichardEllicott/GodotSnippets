@@ -1,22 +1,19 @@
 """
 
-random bag function will pick results using a weighting, present the input as such
+a random bag is used for creating weighted random results
 
+input an array, for example [10,40,25,50]
 
-
-
-
+would return
+0 10% of the time
+1 40% of the time
+2 25% of the time
+3 50% of the time
 
 """
 
 
-
-
-
-
-
-
-func random_bag(ran_bag_list_lists = null, _randf = 0.0):
+func random_bag(ran_bag_list_lists = null, _randf = rand()):
     """
     input a list of weights like:
 
@@ -26,15 +23,12 @@ func random_bag(ran_bag_list_lists = null, _randf = 0.0):
 
     """
 
-    var rand_gen = RandomNumberGenerator.new()
-    rand_gen.seed = hash(_randf)
-
     var sum_of_weight = 0.0
 
     for weight in ran_bag_list_lists:
         sum_of_weight += weight
 
-    var ranf = rand_gen.randf() * sum_of_weight
+    var ranf = _randf * sum_of_weight
 
     for i in ran_bag_list_lists.size():
         var weight = ran_bag_list_lists[i]
