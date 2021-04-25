@@ -2,6 +2,8 @@
 # By Alan Zucconi
 # Converted to GDScript by Goral
 
+# WARNING: turned out to be slower than the 2D method!!!!
+
 class_name GaussianRandom
 
 static func nextGaussian() -> float:
