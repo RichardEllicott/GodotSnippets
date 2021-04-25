@@ -10,6 +10,10 @@ would return
 2 25% of the time
 3 50% of the time
 
+
+it can be useful for weighted random drops
+
+
 """
 
 
