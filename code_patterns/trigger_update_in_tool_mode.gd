@@ -30,7 +30,7 @@ func set_tool_update(input):
 
 
 func tool_update():
-	_ready() # ensure vars are available
+    _ready() # ensure vars are available
     print(self, "run tool_update functions here...")
 
     # EXAMPLES:
