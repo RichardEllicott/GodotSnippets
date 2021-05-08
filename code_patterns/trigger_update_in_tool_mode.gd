@@ -16,6 +16,7 @@ NOTE, we only use a "set" as there is no point to get this variable
 
 # creates in the ide, a boolean tick box that when you try to set, instead triggers an update but remains false
 
+
 tool
 extends Node
 
@@ -33,13 +34,15 @@ func tool_update():
     _ready() # ensure vars are available
     print(self, "run tool_update functions here...")
 
-    # EXAMPLES:
-    for child in get_children(): # WARNING delete all children example!
-        child.queue_free()
+#    # EXAMPLES:
+#    for child in get_children(): # WARNING delete all children example!
+#        child.queue_free()
+#
+#    var node = Polygon2D.new() # create a new node in tool mode
+#    add_child(node)
+#    node.set_owner(get_tree().edited_scene_root)
 
-    var node = Polygon2D.new() # create a new node in tool mode
-    add_child(node)
-    node.set_owner(get_tree().edited_scene_root)
+
 
 
 # Creates in the editor a mode menu, that triggers updates on setting the mode
