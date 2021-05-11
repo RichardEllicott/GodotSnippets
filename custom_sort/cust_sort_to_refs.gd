@@ -1,5 +1,9 @@
 """
 
+obtuse custom sorter built because unable to access the lower levels of the String.sort() function
+
+i needed to get the references back
+
 
 example:
 
@@ -17,7 +21,7 @@ should return: [3,2,0,1]
 func sort_to_refs(sort_me):
     var sorter2 = []
 
-    for i in sort_me.size(): # build a sort structure
+    for i in sort_me.size(): # build a sort structure (looks like   [[0,"Ted"],[1,"Rob"],[2,"Sam"]]   )
         sorter2.append([i,sort_me[i]])
 
     sorter2.sort_custom(self, "_sort_to_refs_predicate") # custom sort it
