@@ -9,3 +9,8 @@ for example:
 
 
 so they can in theory be used together utilizing Godot's node based design
+
+
+
+
+very messy at the moment
