@@ -40,8 +40,6 @@ func gaussian_2D(r1 = randf(), r2 = randf()):
     r1 and r2 are floats from 0 to 1
 
     ran_gaussian_2D(randf(),randf())
-    
-    https://github.com/RichardEllicott/GodotSnippets/blob/master/maths/gaussian_2D.gd
     """
     var al1 = sqrt(-2 * log(r1)) # part one
     var al2 = 2 * PI * r2 # part two
