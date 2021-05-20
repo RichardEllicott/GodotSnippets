@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://EEGodotV10/texures/util/BallGrad64.png" type="Texture" id=1]
+
+[node name="Marker" type="Sprite3D"]
+modulate = Color( 1, 0, 0, 1 )
+pixel_size = 0.0078
+billboard = 1
+texture = ExtResource( 1 )

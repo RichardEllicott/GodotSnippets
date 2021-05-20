@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://EEGodotV10/projects/modular_fps_2021/modular_fps_ray_shoot.gd" type="Script" id=1]
+[ext_resource path="res://EEGodotV10/texures/util/BallGrad64.png" type="Texture" id=2]
+
+[node name="RaycastShootNode" type="Spatial"]
+visible = false
+script = ExtResource( 1 )
+
+[node name="Marker" type="Sprite3D" parent="."]
+modulate = Color( 1, 1, 0, 1 )
+pixel_size = 0.0157
+billboard = 1
+texture = ExtResource( 2 )

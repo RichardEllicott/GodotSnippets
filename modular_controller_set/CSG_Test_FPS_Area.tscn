@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.223529, 0.435294, 0.172549, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Floor" type="CSGMesh" parent="."]
+transform = Transform( 64, 0, 0, 0, -2.79753e-06, 64, 0, -64, -2.79753e-06, 0, 0, 0 )
+use_collision = true
+mesh = SubResource( 1 )
+material = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.864117, 0.163598, -0.47596, 0.503291, -0.280887, 0.817191, 0, -0.945695, -0.325057, 0, 4.81993, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5 )
+use_collision = true
+width = 4.0
+depth = 4.0
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 4 )
+use_collision = true
+width = 4.0
+depth = 4.0

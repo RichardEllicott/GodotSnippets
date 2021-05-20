@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://EEGodotV10/projects/modular_fps_2021/modular_fps_shoot_rb.gd" type="Script" id=1]
+[ext_resource path="res://EEGodotV10/projects/modular_fps_2021/modular_fps_rb_bullet.tscn" type="PackedScene" id=2]
+
+[node name="RBBulletShootNode" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.191289, -1.13411 )
+visible = false
+script = ExtResource( 1 )
+bullet_scene = ExtResource( 2 )
+fire_delay = 0.125

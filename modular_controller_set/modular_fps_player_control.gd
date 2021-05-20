@@ -54,6 +54,12 @@ var hit_points_recharge_rate = 1.0
 
 func _input(event):
 
+    if event.is_action_pressed("ui_teleport"):
+        global_transform = start_transform
+        velocity = Vector3()
+
+
+
     if active:
 
         if event is InputEventMouseMotion:
@@ -109,9 +115,12 @@ func _physics_process(delta):
 
 
 
+var start_transform
 
 func _ready():
 
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
     camera = $Camera
+
+    start_transform = global_transform

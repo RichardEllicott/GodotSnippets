@@ -35,14 +35,6 @@ var bullet_pos
 var bullet_velocity
 
 
-# 1670 m/2 M829 120mm Depeleted Uranium Tank Round
-# 930 m/s 5.56 NATO (AR-15)
-# 90 m/s paintball
-# 90 m/s compound bow
-# 78 m/s fastest squash serve
-# 67 m/s normal bow
-# 64 m/s fastest tennis serve
-# 23 m/s trebuchet middle ages
 
 
 export var bullet_fire_velocity = 960.0 # speed of m16 bullet 5.56x45mm
@@ -52,14 +44,14 @@ var _bullet_ttl = 0
 
 var bullet_pool = []
 
-var bullet_drop = Vector3(0.0,-9.8,0.0) * 1.0
+export var bullet_drop = Vector3(0.0,-9.8,0.0) * 1.0
 
 
 func spawn_pos_marker(pos):
 
     pass
 
-export var debug_draw_whole_arc = false
+export var debug_draw_whole_arc = true
 
 
 func pool_child(child):

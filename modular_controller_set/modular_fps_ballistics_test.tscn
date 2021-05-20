@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://EEGodotV10/projects/modular_fps_2021/modular_fps_ballistics_test.gd" type="Script" id=1]
+[ext_resource path="res://EEGodotV10/projects/modular_fps_2021/DotMarker.tscn" type="PackedScene" id=2]
+
+[node name="modular_fps_ballistics_test" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0 )
+script = ExtResource( 1 )
+active = true
+marker_scene = ExtResource( 2 )
