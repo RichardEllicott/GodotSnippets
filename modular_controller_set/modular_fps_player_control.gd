@@ -47,6 +47,11 @@ onready var debug_label = get_node(_debug_label)
 var camera # set to $Camera on ready
 
 
+
+var initial_hit_points = 100.0
+var hit_points = 100.0
+var hit_points_recharge_rate = 1.0
+
 func _input(event):
 
     if active:

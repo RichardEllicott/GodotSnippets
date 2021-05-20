@@ -48,8 +48,8 @@ func _physics_process(delta):
                 var hit = get_world().get_direct_space_state().intersect_ray(from,to)
 
                 if hit:
-                    print("HIT:", hit)
-                    print("raycast hit %s" % [hit.collider.name])
+#                    print("HIT:", hit)
+#                    print("raycast hit %s" % [hit.collider.name])
                     raycast_laser_marker.global_transform.origin = hit.position
                     raycast_laser_marker.visible = true
 

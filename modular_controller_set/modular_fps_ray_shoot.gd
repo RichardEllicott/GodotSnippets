@@ -1,4 +1,9 @@
 """
+
+simple hitscan type gun where we make a straight and instant ray
+
+(UNDEVELOPED)
+
 """
 extends Spatial
 
