@@ -12,7 +12,7 @@ some lead to a 1D gaussian:
 https://github.com/pgoral/Godot-Gaussian-Random/blob/master/GaussianRandom.gd
 
 
-NEW NOTES 2020... i ran a test of this algo vs this:
+NEW NOTES 2021... i ran a test of this algo vs this:
 https://github.com/p10tr3k/Godot-Gaussian-Random/blob/master/GaussianRandom.gd
 which uses "The Marsaglia polar method"
 which is interesting but essentially rerolls randoms rather than using the sin and cos
