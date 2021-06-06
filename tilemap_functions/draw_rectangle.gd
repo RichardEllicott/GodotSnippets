@@ -5,10 +5,10 @@ programmatic draw to TileSet
 
 """
 
-
-
 func draw_rectangle(_rect, val = 0):
-
+    """
+    hollow rectangle, used to draw a quick border
+    """
     for x in _rect.size.x:
 
         #top line
@@ -33,3 +33,16 @@ func draw_rectangle(_rect, val = 0):
             _rect.position.x+ _rect.size.x -1,
             _rect.position.y+y,
             val)
+
+
+func draw_filled_rectangle(_rect, val = 0):
+    """
+    filled rectangle
+    """
+    for x in _rect.size.x:
+        for y in _rect.size.y:
+            set_cell(
+                _rect.position.x + x,
+                _rect.position.y + y,
+                val
+            )
