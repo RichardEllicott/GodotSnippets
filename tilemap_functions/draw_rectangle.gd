@@ -3,6 +3,13 @@
 programmatic draw to TileSet
 
 
+usage:
+
+draw_rectangle(Rect2(3,3,11,11),1)
+
+draw_filled_rectangle(Rect2(3,3,11,11),1)
+
+
 """
 
 func draw_rectangle(_rect, val = 0):
