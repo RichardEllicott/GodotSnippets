@@ -6,6 +6,10 @@ https://www.reddit.com/r/godot/comments/8kpxj6/can_anyone_help_me_with_math_3d/
 
 
 
+has some issue turning weird directions
+
+
+
 """
 
 
