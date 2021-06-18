@@ -1,5 +1,5 @@
 
-scons is required for compiling the Godot source code
+scons is required for compiling the Godot source code and also that it uses Python 3
 
 
 i decided to use macports as it's smaller and brew seems to take a long time and i get issues with it
