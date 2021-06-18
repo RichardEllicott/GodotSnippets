@@ -28,4 +28,10 @@ add to "~./bash_profile":
 
 
 
+ADDITIONAL:
+the python installs scons here:
+~/Library/Python/3.9/lib/python/site-packages/SCons/__main__.py
+
+
+
 	
