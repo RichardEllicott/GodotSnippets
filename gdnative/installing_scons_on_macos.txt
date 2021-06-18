@@ -1,0 +1,31 @@
+
+scons is required for compiling the Godot source code
+
+
+i decided to use macports as it's smaller and brew seems to take a long time and i get issues with it
+
+
+WARNING: sudo port install scons # will install an older scons, that's why i use pips instead to install scons 
+
+
+install macports:
+	https://www.macports.org
+
+
+run commands:
+	sudo port install python39 # install python 3.9	
+	sudo port install py39-pip # install pip
+
+	sudo port select --set python3 python39 # set default python3 as python39
+	sudo port select --set pip3 pip39 # set default pip3 as pip39
+
+	pip3 install scons # should be to a user directory, run with no sudo
+		
+
+add to "~./bash_profile":
+	alias scons="python3 -m SCons" # run python3 with module (-m) "SCons"
+
+
+
+
+	
