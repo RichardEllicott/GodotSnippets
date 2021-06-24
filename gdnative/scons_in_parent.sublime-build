@@ -1,0 +1,5 @@
+{
+	// run scons in the parent directory (the edited file is usually in the src directory)
+	"working_dir": "${file_path}/../",
+	"shell_cmd": "python3 -m SCons platform=osx"
+}
