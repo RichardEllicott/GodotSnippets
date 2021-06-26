@@ -1,0 +1,6 @@
+{
+	// run scons in the parent directory (the edited file is usually in the src directory)
+	// make it easy to edit a file in the src directory and press command+build to build
+	"working_dir": "${file_path}/../",
+	"shell_cmd": "python3 -m SCons platform=osx"
+}
