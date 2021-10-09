@@ -1,3 +1,20 @@
+"""
+
+it is better practise to send a signal to a target node than to simply call a function on it
+
+for example many people might call:
+
+    if body.has_method("apply_damage"):
+        body.apply_damage(33.0)
+
+
+
+on a target body... however the code will now execute in the current thread, most of the time this is unproblematic however it is better to send a signal
+the code running from the signal will be running on the node itself at a later point in time
+the event model also is conviniant 
+
+
+"""
 
 #example of sending a one shot signal with a parameter:
 
