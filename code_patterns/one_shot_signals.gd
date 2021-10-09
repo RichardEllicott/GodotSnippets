@@ -8,11 +8,11 @@ for example many people might call:
         body.apply_damage(33.0)
 
 
+on a target body... however the code will now execute in the current thread, most of the time this is unproblematic however it is better to send a signal from 
+the code running from the signal will be running on the node itself at a later point in time, avoiding issues where potentially more than one function could be called at the same time
 
-on a target body... however the code will now execute in the current thread, most of the time this is unproblematic however it is better to send a signal
-the code running from the signal will be running on the node itself at a later point in time
-the event model also is conviniant 
 
+this code example shows setting up a signal on the fly as one-shot, sending it, as a way around this issue
 
 """
 
