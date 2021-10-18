@@ -8,3 +8,5 @@ most snippets are presented as an easy to use ecapsulated function
 some things like CSG can only really be encapsulated in an object, but the object should be presented as minimal as possible
 
 
+the repo is not brilliantly organised
+
