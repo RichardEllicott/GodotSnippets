@@ -100,11 +100,17 @@ func make_quad(a: Vector3,  b: Vector3,  c: Vector3,  d: Vector3):
 
         match normal_vector.abs().max_axis():
             0: # X
-                uvs.append_array([
-                    Vector2(a_s.y,a_s.z),
-                    Vector2(b_s.y,b_s.z),
-                    Vector2(c_s.y,c_s.z),
-                    Vector2(d_s.y,d_s.z)
+#                uvs.append_array([
+#                    Vector2(a_s.y,a_s.z),
+#                    Vector2(b_s.y,b_s.z),
+#                    Vector2(c_s.y,c_s.z),
+#                    Vector2(d_s.y,d_s.z)
+#                ])
+                uvs.append_array([ # SOLVED FLIPPING ISSUE, ensures brick texture horizontal
+                    Vector2(a_s.z,a_s.y),
+                    Vector2(b_s.z,b_s.y),
+                    Vector2(c_s.z,c_s.y),
+                    Vector2(d_s.z,d_s.y)
                 ])
             1: # Y
                 uvs.append_array([
