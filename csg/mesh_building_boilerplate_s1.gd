@@ -1,7 +1,37 @@
 """
-Basic CSG boilerplate showing drawing a quad
 
-Upgrading to be able to handle multiple materials
+More advanced boilerplate, drop in replacement for old boilerplate
+
+
+UV projections all corrected for textures
+
+
+Draw meshes on different surfaces in any order, eg, drawing multiple cubs of different materials:
+    
+    set_surface(0) # set surface(0)
+    make_cube(Vector3())
+    set_surface(1)
+    make_cube(Vector3(1,0,1), Vector3(2,1,1))
+    set_surface(2)
+    make_cube(Vector3(2,0,2))
+    set_surface(0)
+    make_cube(Vector3(3,0,3), Vector3(2,1,1))
+    set_surface(3)
+    make_cube(Vector3(4,0,4), Vector3(2,1,1))
+
+    
+    _build_geometry() # will build all the geometry required, it will build each surface in turn
+
+
+-supports multiple surfaces, Pool arrays dropped as they don't pass by reference, instead the Pool arrays are loaded at the last minute
+    (this is a feature not a bug, it should not be a great deal slower)
+
+
+
+
+-
+
+ADDING simplex noise displacement modifier
 
 
 """
@@ -14,7 +44,7 @@ func set_tool_update(input):
     if input:
         _ready()
         tool_update = false
-        _build_full_mesh()
+        _on_trigger_update()
 
 
 # add the verts etc here
@@ -43,8 +73,8 @@ func _add_data_as_surface():
     
     """
 
-#    if not _array_mesh:
-#        _array_mesh = ArrayMesh.new() # new array mesh object to build
+    if not _array_mesh:
+        _array_mesh = ArrayMesh.new() # new array mesh object to build
         
 
     var mesh_arrays = []
@@ -117,14 +147,14 @@ func flush_all_data():
 #    indices = PoolIntArray()
 #    uvs = PoolVector2Array()
     
-    verts = []
-    normals = []
-    indices = []
-    uvs = []
+#    verts = []
+#    normals = []
+#    indices = []
+#    uvs = []
     
     surfaces_list = []
     
-    _array_mesh = ArrayMesh.new()
+    _array_mesh = null # not clearing this can cause issues
     
     set_surface(0)
 
@@ -242,18 +272,21 @@ func make_cube(position, size = Vector3(1,1,1)):
     var y = position.y
     var z = position.z
     
-    #left
+    #left -x
     make_quad(
-        Vector3(x,y,z),
+
         Vector3(x,y+size.y,z),
         Vector3(x,y+size.y,z+size.z),
-        Vector3(x,y,z+size.z))
-    #right
+        Vector3(x,y,z+size.z),
+        
+        Vector3(x,y,z))
+    #right +x
     make_quad(
-        Vector3(x+size.x,y,z+size.z),
+        
         Vector3(x+size.x,y+size.y,z+size.z),
         Vector3(x+size.x,y+size.y,z),
-        Vector3(x+size.x,y,z))
+        Vector3(x+size.x,y,z),
+        Vector3(x+size.x,y,z+size.z))
     #down
     make_quad(
         Vector3(x+size.x,y,z),
@@ -266,18 +299,20 @@ func make_cube(position, size = Vector3(1,1,1)):
         Vector3(x,y+size.y,z+size.z),
         Vector3(x,y+size.y,z),
         Vector3(x+size.x,y+size.y,z))
-    #back
+    #back -z
     make_quad(
-        Vector3(x+size.x,y,z),
+        
         Vector3(x+size.x,y+size.y,z),
         Vector3(x,y+size.y,z),
-        Vector3(x,y,z))
-    #front
+        Vector3(x,y,z),
+        Vector3(x+size.x,y,z))
+    #front +z
     make_quad(
-        Vector3(x,y,z+size.z),
+        
         Vector3(x,y+size.y,z+size.z),
         Vector3(x+size.x,y+size.y,z+size.z),
-        Vector3(x+size.x,y,z+size.z))
+        Vector3(x+size.x,y,z+size.z),
+        Vector3(x,y,z+size.z))
     
 
  
@@ -325,7 +360,7 @@ func _copy_user_materials():
     
     
 
-func _build_all_surfaces():
+func _build_geometry():
     
     
     for n in surfaces_list.size():
@@ -344,20 +379,18 @@ func _build_all_surfaces():
     
     _copy_user_materials()
     
+    flush_all_data()
+    
     
         
     
     
 func _ready():
     pass
-
-
-func _build_full_mesh():
     
-    _array_mesh = ArrayMesh.new()
     
-
-
+func test_demo01():
+    
     set_surface(0)
     make_cube(Vector3())
     set_surface(1)
@@ -378,15 +411,27 @@ func _build_full_mesh():
     make_cube(Vector3(8,0,8), Vector3(3,1,1))
     set_surface(2)
     make_cube(Vector3(9,0,9), Vector3(3,1,1))
-    
-    
-    _build_all_surfaces()
+
+
+
+
+func _on_trigger_update():
+
     
 
-    print("surface count:  ", surfaces_list.size())
+    test_demo01()
+    
+    
+    apply_noise_modifier()
+    
+    
+    _build_geometry()
     
 
-    flush_all_data()
+
+    
+
+
     
     
     
@@ -426,5 +471,36 @@ func _get_noise_at_pos(position: Vector3):
     var c = _noise.get_noise_3dv(position)
     
     
-    return Vector3(a,b,c)
+    return Vector3(a,b,c) * noise_strength
 #    return Vector3(a,0,c)
+
+
+
+func apply_noise_modifier():
+    """
+    
+    simplifying working with geometry is the concept of a "modifier"
+    
+    this modifier runs through all the verts we have choosen to draw, then displaces their position with simplex noise
+    
+    construct geometry first
+    run a modifier
+    then finally build the array mesh
+    
+    """
+    
+    print("apply_simplex_displacement_modifier...")
+    print("surface count:  ", surfaces_list.size())
+    
+    
+    for surface in surfaces_list: # run through all surfaces
+        
+        var verts = surface[0] # get the verts
+        
+        for i in verts.size(): # run through each vert
+            
+            var vert = verts[i]
+            verts[i] = _get_noise_at_pos(vert) + vert # equal to noise plus orginal position
+    
+    
+    pass
