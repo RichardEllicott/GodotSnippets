@@ -72,33 +72,34 @@ func _add_data_as_surface():
     each time we call this it adds a new surface
     
     """
+    
+
 
     if not _array_mesh:
         _array_mesh = ArrayMesh.new() # new array mesh object to build
         
 
-    var mesh_arrays = []
+    var mesh_arrays = [] # create input data for the ArrayMesh
     mesh_arrays.resize(ArrayMesh.ARRAY_MAX)
     
-    
-
-    
-    # add all the data from this node
-    mesh_arrays[Mesh.ARRAY_VERTEX] = PoolVector3Array(verts)
-    mesh_arrays[Mesh.ARRAY_NORMAL] = PoolVector3Array(normals)
-    mesh_arrays[Mesh.ARRAY_INDEX] = PoolIntArray(indices)
-    mesh_arrays[Mesh.ARRAY_TEX_UV] = PoolVector2Array(uvs)
-    
-    
-
-    
-    
+    if verts.size() == 0:
+        push_warning("no verts found, adding dummy data!") # no trinagles use this surface material, this is a workaround for problems
+        # having no actual data (empty is a problem for adding a surface)
+        # in this case we want to still pretend to add a surface
+        mesh_arrays[Mesh.ARRAY_VERTEX] = PoolVector3Array([Vector3()]) # add just one coordinate
+    else:
+        # add all the data from this node
+        mesh_arrays[Mesh.ARRAY_VERTEX] = PoolVector3Array(verts)
+        mesh_arrays[Mesh.ARRAY_NORMAL] = PoolVector3Array(normals)
+        mesh_arrays[Mesh.ARRAY_INDEX] = PoolIntArray(indices)
+        mesh_arrays[Mesh.ARRAY_TEX_UV] = PoolVector2Array(uvs)
+        
 
     _array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_arrays)
 
 
     mesh = _array_mesh # finally set targets mesh
-    
+
 
     
     
@@ -371,10 +372,12 @@ func _build_geometry():
 #        print(self, suf_list)
         
         if verts.size() > 0: # WARNING: 
-            _add_data_as_surface()
+            pass
         else:
 #            push_warning ("one of the surfaces had no verts!")
             pass
+            
+        _add_data_as_surface()
     
     
     _copy_user_materials()
@@ -399,8 +402,12 @@ func test_demo01():
     make_cube(Vector3(2,0,2))
     set_surface(0)
     make_cube(Vector3(3,0,3), Vector3(2,1,1))
-    set_surface(3)
-    make_cube(Vector3(4,0,4), Vector3(2,1,1))
+    
+    
+#    set_surface(3)
+#    make_cube(Vector3(4,0,4), Vector3(2,1,1))
+    
+    
     set_surface(4)
     make_cube(Vector3(5,0,5), Vector3(2,1,1))
     set_surface(5)
