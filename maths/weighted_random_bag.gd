@@ -2,16 +2,23 @@
 
 a random bag is used for creating weighted random results
 
-input an array, for example [10,40,25,50]
+input an array, for example [10,40,30,20] (adds up to 100)
 
-would return
+would return:
 0 10% of the time
 1 40% of the time
-2 25% of the time
-3 50% of the time
+2 30% of the time
+3 20% of the time
 
 
-it can be useful for weighted random drops
+you are not required to add the points up to 100, you could equally use [1,2,3] for example:
+
+0: 20%
+1: 40%
+2: 60%
+
+
+random bag is useful for things like random drops or events where more rare events must occur less often
 
 
 """
