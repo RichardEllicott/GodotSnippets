@@ -3,6 +3,9 @@
 add a child spatial node if not already present
 
 
+not a great pattern yet, only works on direct children
+
+
 """
 
 
