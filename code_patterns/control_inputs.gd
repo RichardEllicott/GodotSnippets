@@ -1,4 +1,12 @@
 """
+
+no longer much use, use:
+
+
+var joy_input = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+
+
+
 """
 
 
