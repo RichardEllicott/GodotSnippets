@@ -36,7 +36,7 @@ func tool_update():
 
 #    # EXAMPLES:
 #    for child in get_children(): # WARNING delete all children example!
-#        child.queue_free()
+#        remove_child(child)
 #
 #    var node = Polygon2D.new() # create a new node in tool mode
 #    add_child(node)
