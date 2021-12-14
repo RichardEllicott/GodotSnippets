@@ -10,13 +10,14 @@ rotate_object_local(Vector3(1, 0, 0),  delta * speed * velocity.x)
 
 
 
-func rotate_local():
+func rotate_local(rot: Vector3):
 
-    rotate(transform.basis.x, delta * speed * velocity.x) # forwards N
-    rotate(transform.basis.y, delta * speed * velocity.y) # strafe E
-    rotate(transform.basis.z, delta * speed * velocity.z) # rotate clockwise direction
-#
-    
-    rotate_object_local(Vector3(1, 0, 0),  delta * speed * velocity.x)
-    rotate_object_local(Vector3(0, 1, 0),  delta * speed * velocity.y)
-    rotate_object_local(Vector3(0, 0, 1),  delta * speed * velocity.z)
+    # using the basis vectors
+    rotate(transform.basis.x, rot.x) # forwards N
+    rotate(transform.basis.y, rot.y) # strafe E
+    rotate(transform.basis.z, rot.z) # rotate clockwise direction
+
+    # alternative
+    rotate_object_local(Vector3(1, 0, 0),  rot.x)
+    rotate_object_local(Vector3(0, 1, 0),  rot.y)
+    rotate_object_local(Vector3(0, 0, 1),  rot.z)
