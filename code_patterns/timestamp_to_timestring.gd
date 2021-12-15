@@ -21,3 +21,10 @@ func timestamp_to_timestring(number) -> String:
     var time : Dictionary = OS.get_datetime_from_unix_time(number);
     var display_string : String = "%d/%02d/%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute];
     return display_string
+
+
+# made to go day/month/year hour:minute
+func timestamp_to_timestring(number) -> String:
+    var time : Dictionary = OS.get_datetime_from_unix_time(number);
+    var display_string : String = "%d/%02d/%02d %02d:%02d" % [time.day, time.month, time.year, time.hour, time.minute]; # modified
+    return display_string
