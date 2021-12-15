@@ -2,12 +2,15 @@
 
 
 converting a number to a time display like 3:03 etc
+
+
 """
 
 
 
 # CORRECTED FROM:
 # https://godotengine.org/qa/32785/is-there-simple-way-to-convert-seconds-to-hh-mm-ss-format-godot
+# seems to have a problem
 
 enum TimeFormat {
     FORMAT_HOURS   = 1 << 0,
