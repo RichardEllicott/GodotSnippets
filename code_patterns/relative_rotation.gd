@@ -1,7 +1,6 @@
 """
 
-scraps while solving how to make a geoscape like xcom (units flying around on sphere)
-
+local rotation example, you need this for controls with (yaw, pitch, roll), like a realistic plane/spaceship
 
 """
 
