@@ -2,7 +2,7 @@
 ##
 ## EXAMPLE:
 ## var csv_table = CSVTools.CSVTable(filename) # load the object
-## csv_table.get_list_of_dicts() # get a list of rows as dicts
+## csv_table.get_array_of_dicts() # get a list of rows as dicts
 ## csv_table.get_dict_of_dicts() # get a dict of dicts using the first column as the primary key
 ##
 ## as per Godot's built in csv reading, this class uses unicode (utf-8)
@@ -77,7 +77,7 @@ class CSVTable:
     
     
     ## return a list of record rows as dictionaries (similar to python DictReader)
-    func get_list_of_dicts():
+    func get_array_of_dicts() -> Array:
         var list_of_dicts = [] # retiurn values
         
         for i in body.size():
@@ -87,7 +87,7 @@ class CSVTable:
 
 
     ## return a dict of dicts, such that the first column serves as a key reference
-    func get_dict_of_dicts(primary_key : int = 0):
+    func get_dict_of_dicts(primary_key : int = 0) -> Dictionary:
         
         var ret = {} # return dict of dicts
         
@@ -136,6 +136,14 @@ class CSVTable:
         var ret = ""
         
         var width = 0
+        
+        for i in header.size(): # DRAW HORIZONTAL LINE
+            for i2 in col_width + 3:
+                ret += "-"
+        ret += "---"
+        ret += "\n"
+        
+        ret += " |" + "CSV TABLE: %s\n" % [_filename]
         
         for i in header.size(): # DRAW HORIZONTAL LINE
             for i2 in col_width + 3:
