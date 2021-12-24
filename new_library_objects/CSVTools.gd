@@ -1,9 +1,11 @@
 ## CSVTools contains a CSVTable class that reads csv tables (which are easy to edit with OpenOffice)
 ##
-## EXAMPLE:
-## var csv_table = CSVTools.CSVTable(filename) # load the object
-## csv_table.get_array_of_dicts() # get a list of rows as dicts
-## csv_table.get_dict_of_dicts() # get a dict of dicts using the first column as the primary key
+## EXAMPLES:
+##
+## var table = CSVTools.CSVTable(filename) # load the object
+##
+## table.get_array_of_dicts() # get an array of dicts (similar to the the python DictReader)
+## table.get_dict_of_dicts() # get a dict of dicts using the first column as the primary key
 ##
 ## as per Godot's built in csv reading, this class uses unicode (utf-8)
 ##
@@ -17,23 +19,39 @@ class_name CSVTools
 ## CSVTable object for easy loading/saving of CSV table files
 class CSVTable:
 
-    var _filename # csv filename
+    var _filename = "" # csv filename
 
     var header : Array = [] # list of strings from header
 
     var body : Array = [] # list of list of strings (the main csv data)
 
     var _key_to_col : Dictionary = {} # convert a column name to a column int reference
+    
+    
+    ## rebuild the _key_to_col dict, the header array must be present
+    func _generate_key_to_col():
+        _key_to_col = {}
+        var i = 0
+        for val in header:
+            _key_to_col[val] = i
+            i += 1
+        
+    
+    ## clear data to load new data
+    func _clear():
+    
+        header = []
+        body = []
+        _key_to_col = {}
+        
+        
+        pass
 
     ## loads a filename, called internally, do not use
     ## stores the data of the csv file into this object for further usage
     func _load_filename(_filename, max_rows):
         
-        # reset these variables
-        _filename = _filename 
-        header = []
-        body = []
-        _key_to_col = {}
+        _clear()
         
         var record_ref = 0
         var start_row = 0
@@ -74,7 +92,10 @@ class CSVTable:
         for i in header.size():
             ret[header[i]] = record[i]
         return ret
-    
+
+    ## record count
+    func get_record_count() -> int:
+        return body.size()
     
     ## return a list of record rows as dictionaries (similar to python DictReader)
     func get_array_of_dicts() -> Array:
@@ -116,6 +137,8 @@ class CSVTable:
     ## trunctate or stretch a string to size, adding a * if chars are missing
     func string_to_size(input, size = 8):
         
+        input = str(input)
+        
         if input.length() > size:
             
             input = input.trim_suffix(' ') # UNSURE IF NEEED
@@ -143,7 +166,7 @@ class CSVTable:
         ret += "---"
         ret += "\n"
         
-        ret += " |" + "CSV TABLE: %s\n" % [_filename]
+        ret += " | " + "filename: %s\n" % [_filename]
         
         for i in header.size(): # DRAW HORIZONTAL LINE
             for i2 in col_width + 3:
@@ -208,11 +231,72 @@ class CSVTable:
             for record in body:
                 file.store_csv_line(record)
         file.close()
+        
+    
+    ## load this object from an array_of_dicts instead of a file
+    ## even if the dicts have different keys, they will be merged into a super-table
+    func load_from_array_of_dicts(array_of_dicts):
+        
+        _clear()
+        
+        var detected_keys = {} # null ref dict
+        
+        for row in array_of_dicts: # first we detect all keys
+            for key in row:
+                detected_keys[key] = null
+                
+        header = detected_keys.keys()
+        
+        print("header: ", header)
+        
+        _generate_key_to_col() # rebuild the references
+        
+        var table_width = header.size()
+        
+        for row in array_of_dicts:
+            var new_row = []
+            new_row.resize(table_width) # resizing should be faster than appending in a loop
+            
+            body.append(new_row)
+            
+            
+            for i in header.size():
+                var header_label = header[i]
+                
+                if header_label in row: # add value if we have it
+                    new_row[i] = row[header_label]
+                
+                
+
     
     ## when loading class, we need to specify the csv filename which will trigger loading
-    func _init(_filename: String, max_rows = 1000000):
-        self._filename = _filename
-        _load_filename(_filename,max_rows)
+    ## we can now also add an array of dicts
+    func _init(_filename, max_rows = 1000000):
+        
+        if _filename is String: # if string, assume it is a filename
+            self._filename = _filename
+            _load_filename(_filename,max_rows)
+            
+        elif _filename is Array:
+            if _filename.size() > 0:
+                if _filename[0] is Dictionary:
+                    print("DETECTED ARRAY OF DICTS")
+                    
+                    load_from_array_of_dicts(_filename)
+                    
+                elif _filename[0] is Array:
+                    
+                    print("DETECTED ARRAY OF ARRAYS")
+                    
+        elif _filename is Dictionary:
+            var keys = _filename.keys()
+            if keys.size() > 0:
+                var key = keys[0]
+                
+                if key is Dictionary:
+                    
+                    print("DETECTED DICT OF DICTS")
+                
     
- 
+
     
