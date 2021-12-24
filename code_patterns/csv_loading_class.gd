@@ -4,8 +4,11 @@ a class to load CSV tables, my existing functions are not suitable for all purpo
 
 
 
+var x = CSV_Table.new(filename)
+
 
 """
+
 
 
 
@@ -21,21 +24,19 @@ class CSV_Table:
     
     var _filename # csv filename
     
-    var _key_to_col = {} # convert a column name to a column int reference
+    var _key_to_col : Dictionary = {} # convert a column name to a column int reference
     
-    var header = [] # list of strings from header
+    var header : Array = [] # list of strings from header
     
-    var records = [] # list of rows of strings
+    var records : Array = [] # list of rows of strings
     
-    var max_rows = null
     
-    func load_filename(_filename, max_rows = 92233720368547758):
-        
-        
-        print("CSV_Table LOAD FILE ", _filename)
-        
-
+    func _load_filename(_filename, max_rows = 92233720368547758):
+        """
+        loads a filename to this object
             
+        filename should be a csv table file with a top row as the header
+        """
         
         records = []
         
@@ -50,7 +51,6 @@ class CSV_Table:
         var err = f.open(_filename, File.READ)
         if err != OK:
             printerr("Could not open file, error code ", err)
-            
         else:
             
             var i = -1
@@ -62,29 +62,23 @@ class CSV_Table:
                 
                 var row = f.get_csv_line()
                 
-#                print("CSVTABLE: ",row)
-                
                 if i < start_row: # ignore
                     pass
                 elif i == start_row: # header
                     var i2 = 0
                     for val in row:
                         _key_to_col[val] = i2
-                        i2 += 1
-                    
-                    
+                        i2 += 1                    
                     header = row
-#                    print("recovered keys: ", keys)
+
                 else: # records
-                    
-#                    print("%s" % [record_ref], row)
-                    
-                    
-                    records.append(row)
-                    
+                    records.append(row)               
                     record_ref += 1
         
-        print("CSV_Table FILE LOADED ", _filename)
+
+
+
+
 
     func get_list_of_dicts():
         """
@@ -94,13 +88,13 @@ class CSV_Table:
         for record in records: # for each record
             var row = {} # build a row
 #            print("row: ", row)
-            print("rowsize: ", row.size())
+#            print("rowsize: ", row.size())
             list_of_dicts.append(row) # append to ret
             for i in header.size(): # for each col
                 
                 
-                print("header[i]: ", header[i])
-                print("record[i]: ", record[i])
+#                print("header[i]: ", header[i])
+#                print("record[i]: ", record[i])
                 
                 
                 
@@ -142,12 +136,22 @@ class CSV_Table:
         return ret
         
         
-
+    func get_pretty_string():
+        
+        var ret = ""
+        
+        
+        for key in header:
+            
+            ret += "%s, " % key
+        
+        ret += "\n"
+        
+        return ret
             
 
     func _init(_filename: String):
         self._filename = _filename
-        load_filename(_filename,5)
-    
-        
+        _load_filename(_filename,5)
+ 
 
