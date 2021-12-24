@@ -3,7 +3,7 @@
 ## EXAMPLE:
 ## var csv_table = CSVTools.CSVTable(filename) # load the object
 ## csv_table.get_list_of_dicts() # get a list of rows as dicts
-## csv_table.get_keyed_data() # get a dict of dicts using the first column as the primary key
+## csv_table.get_dict_of_dicts() # get a dict of dicts using the first column as the primary key
 ##
 ## as per Godot's built in csv reading, this class uses unicode (utf-8)
 ##
@@ -13,10 +13,9 @@
 
 class_name CSVTools
 
+
+## CSVTable object for easy loading/saving of CSV table files
 class CSVTable:
-    """
-    class to load a csv table file such that the first row is the headers
-    """
 
     var _filename # csv filename
 
@@ -88,7 +87,7 @@ class CSVTable:
 
 
     ## return a dict of dicts, such that the first column serves as a key reference
-    func get_keyed_data(primary_key : int = 0):
+    func get_dict_of_dicts(primary_key : int = 0):
         
         var ret = {} # return dict of dicts
         
@@ -180,6 +179,12 @@ class CSVTable:
         ret += "\n"
         
         return ret
+        
+        
+        
+    func _to_string():
+        return get_pretty_string()
+        
         
    ## save the data from header and records into a new csv file
     func save_to_file(_filename):
