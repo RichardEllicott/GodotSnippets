@@ -1,11 +1,13 @@
 """
 
+CSVTools has one do it all CSVTable object
+
 to create a new CSV Table:
     
 var csv_table = CSVTools.CSVTable(filename)
 
-
-
+csv_table.get_list_of_dicts() # get a list of rows as dicts
+csv_table.get_keyed_data() # get a dict of dicts using the first column as the primary key
 
 
 """
