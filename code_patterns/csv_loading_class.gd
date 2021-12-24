@@ -1,30 +1,32 @@
 """
 
-a class to load CSV tables, my existing functions are not suitable for all purposes, based on the Python patterns
+to create a new CSV Table:
+    
+var csv_table = CSVTools.CSVTable(filename)
 
 
 
-var x = CSV_Table.new(filename)
 
 
 """
 
+class_name CSVTools
 
-class CSV_Table:
+class CSVTable:
     """
     class to load a csv table file such that the first row is the headers
     """
-    
+
     var _filename # csv filename
-    
+
     var _key_to_col : Dictionary = {} # convert a column name to a column int reference
-    
+
     var header : Array = [] # list of strings from header
-    
+
     var records : Array = [] # list of rows of strings
-    
-    
-    func _load_filename(_filename, max_rows = 92233720368547758):
+
+
+    func _load_filename(_filename, max_rows):
         """
         loads a filename to this object
             
@@ -75,14 +77,14 @@ class CSV_Table:
         var list_of_dicts = [] # retiurn values
         for record in records: # for each record
             var row = {} # build a row
-#            print("row: ", row)
-#            print("rowsize: ", row.size())
+    #            print("row: ", row)
+    #            print("rowsize: ", row.size())
             list_of_dicts.append(row) # append to ret
             for i in header.size(): # for each col
                 
                 
-#                print("header[i]: ", header[i])
-#                print("record[i]: ", record[i])
+    #                print("header[i]: ", header[i])
+    #                print("record[i]: ", record[i])
                 
                 
                 
@@ -118,7 +120,7 @@ class CSV_Table:
             ret[dict_ref] = record_dict # save the record dict using the found key
                     
         return ret
-    
+
     func string_to_size(input, size = 8):
         """
         trunctate or stretch a string to size, adding a * if chars are missing
@@ -134,7 +136,7 @@ class CSV_Table:
         
         while input.length() < size:
             input += " "
-    
+
         return input
         
     func get_pretty_string(col_width = 12):
@@ -190,16 +192,15 @@ class CSV_Table:
         
         return ret
             
-    func _init(_filename: String, max_rows = 92233720368547758):
+    func _init(_filename: String, max_rows):
         self._filename = _filename
         _load_filename(_filename,max_rows)
         
         
     func save_to_file(_filename):
         
-        print("saving file: ",  _filename)
-        
-        var max_rows = 10000000
+    #        print("saving file: ",  _filename)
+
         var file = File.new()
         var error = file.open(_filename, File.WRITE)
         if error != OK:
@@ -211,6 +212,4 @@ class CSV_Table:
             for record in records:
                 file.store_csv_line(record)
         file.close()
-        
     
-
