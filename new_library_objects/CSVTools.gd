@@ -6,6 +6,10 @@
 ## csv_table.get_keyed_data() # get a dict of dicts using the first column as the primary key
 ##
 ## as per Godot's built in csv reading, this class uses unicode (utf-8)
+##
+## i created this class as it's neater than using function snippets
+##
+
 
 class_name CSVTools
 
