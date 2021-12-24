@@ -10,14 +10,9 @@ var x = CSV_Table.new(filename)
 """
 
 
-
 class CSV_Table:
     """
-    
-    class to load a csv file such that the first row is the headers
-    
-    
-    
+    class to load a csv table file such that the first row is the headers
     """
     
     var _filename # csv filename
@@ -73,11 +68,6 @@ class CSV_Table:
                     records.append(row)               
                     record_ref += 1
         
-
-
-
-
-
     func get_list_of_dicts():
         """
         return the csv table files data as a list of dicts
@@ -99,13 +89,9 @@ class CSV_Table:
                 row[header[i]] = record[i] # assign the value to the dict
         return list_of_dicts
 
-    
     func get_keyed_data(primary_key : int = 0):
         """
         return the data as a dict of dicts, specifying which column to take as the primary key
-        
-        
-        NOT WORKING!!!
         """
         
         var ret = {} # return dict of dicts
@@ -133,15 +119,18 @@ class CSV_Table:
                     
         return ret
     
-    
-    
     func string_to_size(input, size = 8):
-        
+        """
+        trunctate or stretch a string to size, adding a * if chars are missing
+        """
         
         if input.length() > size:
-        
-            input = input.substr(0,size-1)
-            input += "?"
+            
+            input = input.trim_suffix(' ') # UNSURE IF NEEED
+            input = input.trim_prefix(' ') # UNSURE IF NEEED
+            
+            input = input.substr(0,size-2)
+            input += ".."
         
         while input.length() < size:
             input += " "
@@ -149,6 +138,9 @@ class CSV_Table:
         return input
         
     func get_pretty_string(col_width = 12):
+        """
+        return a string showing the csv file as a table in ASCII art
+        """
         
         var ret = ""
         
@@ -198,11 +190,27 @@ class CSV_Table:
         
         return ret
             
-
     func _init(_filename: String, max_rows = 92233720368547758):
         self._filename = _filename
         _load_filename(_filename,max_rows)
+        
+        
+    func save_to_file(_filename):
+        
+        print("saving file: ",  _filename)
+        
+        var max_rows = 10000000
+        var file = File.new()
+        var error = file.open(_filename, File.WRITE)
+        if error != OK:
+            printerr("Could not open file, error code ", error)
+        else:
+            
+            file.store_csv_line(header)
+            
+            for record in records:
+                file.store_csv_line(record)
+        file.close()
+        
     
-        
-        
 
