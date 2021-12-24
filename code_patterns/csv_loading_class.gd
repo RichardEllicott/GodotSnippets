@@ -11,8 +11,6 @@ var x = CSV_Table.new(filename)
 
 
 
-
-
 class CSV_Table:
     """
     
@@ -134,24 +132,77 @@ class CSV_Table:
             ret[dict_ref] = record_dict # save the record dict using the found key
                     
         return ret
+    
+    
+    
+    func string_to_size(input, size = 8):
         
         
-    func get_pretty_string():
+        if input.length() > size:
+        
+            input = input.substr(0,size-1)
+            input += "?"
+        
+        while input.length() < size:
+            input += " "
+    
+        return input
+        
+    func get_pretty_string(col_width = 12):
         
         var ret = ""
         
+        var width = 0
+        
+        for i in header.size(): # DRAW HORIZONTAL LINE
+            for i2 in col_width + 3:
+                ret += "-"
+        ret += "---"
+        ret += "\n"
         
         for key in header:
             
-            ret += "%s, " % key
+            key = string_to_size(key,col_width)
+            
+            ret += " | %s" % key
+            
+        ret += " |"
+            
+        width = ret.length()
         
+        ret += "\n"
+        
+        for i in header.size(): # DRAW HORIZONTAL LINE
+            for i2 in col_width + 3:
+                ret += "-"
+        ret += "---"
+        ret += "\n"
+        
+        
+        for row in records:
+            
+            for val in row:
+                
+                val = string_to_size(val,col_width)
+                
+                ret += " | %s" % val
+            
+            ret += " |"
+            ret += "\n"
+            
+        for i in header.size(): # DRAW HORIZONTAL LINE
+            for i2 in col_width + 3:
+                ret += "-"
+        ret += "---"
         ret += "\n"
         
         return ret
             
 
-    func _init(_filename: String):
+    func _init(_filename: String, max_rows = 92233720368547758):
         self._filename = _filename
-        _load_filename(_filename,5)
- 
+        _load_filename(_filename,max_rows)
+    
+        
+        
 
