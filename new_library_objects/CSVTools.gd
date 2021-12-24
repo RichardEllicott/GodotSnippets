@@ -11,6 +11,11 @@
 ##
 ## i created this class as it's neater than using function snippets
 ##
+##
+## easy import a csv file in the editor, i use "ucsv" so Godot does not show red warnings:
+##
+##     export(String, FILE, "*.csv,*.ucsv") var csv_file = ""
+##
 
 
 class_name CSVTools
@@ -26,7 +31,6 @@ class CSVTable:
     var body : Array = [] # list of list of strings (the main csv data)
 
     var _key_to_col : Dictionary = {} # convert a column name to a column int reference
-    
     
     ## rebuild the _key_to_col dict, the header array must be present
     func _generate_key_to_col():
@@ -210,15 +214,13 @@ class CSVTable:
         ret += "\n"
         
         return ret
-        
-        
-        
+         
     func _to_string():
         return get_pretty_string()
         
         
    ## save the data from header and records into a new csv file
-    func save_to_file(_filename):
+    func save_to_file(_filename: String):
 
         var file = File.new()
         var error = file.open(_filename, File.WRITE)
@@ -235,7 +237,7 @@ class CSVTable:
     
     ## load this object from an array_of_dicts instead of a file
     ## even if the dicts have different keys, they will be merged into a super-table
-    func load_from_array_of_dicts(array_of_dicts):
+    func load_from_array_of_dicts(array_of_dicts: Array):
         
         _clear()
         
@@ -265,6 +267,8 @@ class CSVTable:
                 
                 if header_label in row: # add value if we have it
                     new_row[i] = row[header_label]
+                else:
+                    new_row[i] = "" # ensure blank string rather than null
                 
                 
 
