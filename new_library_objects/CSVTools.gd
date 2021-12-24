@@ -1,16 +1,10 @@
-"""
-
-CSVTools has one do it all CSVTable object
-
-to create a new CSV Table:
-    
-var csv_table = CSVTools.CSVTable(filename)
-
-csv_table.get_list_of_dicts() # get a list of rows as dicts
-csv_table.get_keyed_data() # get a dict of dicts using the first column as the primary key
-
-
-"""
+## CSVTools contains a CSVTable class that reads csv tables (which are easy to edit with OpenOffice)
+##
+## EXAMPLE:
+## var csv_table = CSVTools.CSVTable(filename) # load the object
+## csv_table.get_list_of_dicts() # get a list of rows as dicts
+## csv_table.get_keyed_data() # get a dict of dicts using the first column as the primary key
+##
 
 class_name CSVTools
 
@@ -21,12 +15,11 @@ class CSVTable:
 
     var _filename # csv filename
 
-    var _key_to_col : Dictionary = {} # convert a column name to a column int reference
-
     var header : Array = [] # list of strings from header
 
     var records : Array = [] # list of rows of strings
 
+    var _key_to_col : Dictionary = {} # convert a column name to a column int reference
 
     func _load_filename(_filename, max_rows):
         """
@@ -71,35 +64,22 @@ class CSVTable:
                 else: # records
                     records.append(row)               
                     record_ref += 1
-        
+    
+    ## return a list of record rows as dictionaries (similar to python DictReader)
     func get_list_of_dicts():
-        """
-        return the csv table files data as a list of dicts
-        """
+        
         var list_of_dicts = [] # retiurn values
         for record in records: # for each record
             var row = {} # build a row
-    #            print("row: ", row)
-    #            print("rowsize: ", row.size())
             list_of_dicts.append(row) # append to ret
             for i in header.size(): # for each col
-                
-                
-    #                print("header[i]: ", header[i])
-    #                print("record[i]: ", record[i])
-                
-                
-                
                 row[header[i]] = record[i] # assign the value to the dict
         return list_of_dicts
 
+    ## return a dict of dicts, such that the first column serves as a key reference
     func get_keyed_data(primary_key : int = 0):
-        """
-        return the data as a dict of dicts, specifying which column to take as the primary key
-        """
         
         var ret = {} # return dict of dicts
-        
         
         for rec_ref in records.size(): # for each record
             
@@ -123,10 +103,8 @@ class CSVTable:
                     
         return ret
 
+    ## trunctate or stretch a string to size, adding a * if chars are missing
     func string_to_size(input, size = 8):
-        """
-        trunctate or stretch a string to size, adding a * if chars are missing
-        """
         
         if input.length() > size:
             
@@ -140,12 +118,10 @@ class CSVTable:
             input += " "
 
         return input
-        
+    
+    ## return the data as an ASCII style table for debugging
     func get_pretty_string(col_width = 12):
-        """
-        return a string showing the csv file as a table in ASCII art
-        """
-        
+
         var ret = ""
         
         var width = 0
@@ -173,8 +149,7 @@ class CSVTable:
                 ret += "-"
         ret += "---"
         ret += "\n"
-        
-        
+    
         for row in records:
             
             for val in row:
@@ -197,11 +172,9 @@ class CSVTable:
     func _init(_filename: String, max_rows):
         self._filename = _filename
         _load_filename(_filename,max_rows)
-        
-        
+    
+    ## save the data from header and records into a new csv file
     func save_to_file(_filename):
-        
-    #        print("saving file: ",  _filename)
 
         var file = File.new()
         var error = file.open(_filename, File.WRITE)
