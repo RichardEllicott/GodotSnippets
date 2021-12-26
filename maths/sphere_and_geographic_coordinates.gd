@@ -6,6 +6,7 @@ everything to do with getting the coordinates of spheres, in order to make a sph
 """
 
 
+## WARNING BROKEN!! (not relative)
 ## translate rotations on a globe to the actual 3D position
 ## this is a code version of using the rotation of nodes instead of position
 
