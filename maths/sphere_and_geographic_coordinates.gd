@@ -55,8 +55,10 @@ func geographic_coordinate_to_transform(longitude, latitude, _rotation = 0.0, ra
    
    
 
-func haversine(lat1, lon1, lat2, lon2):
-        
+func haversine(lat1, lon1, lat2, lon2, radius = 6371000.0):
+    
+    # UNTESTED, ADD TEST
+    
     # ported from python 3 version:
     # https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/
     
@@ -78,9 +80,9 @@ func haversine(lat1, lon1, lat2, lon2):
     var a = (pow(sin(dLat / 2.0), 2.0) +
          pow(sin(dLon / 2.0), 2) *
              cos(lat1) * cos(lat2));
-    var rad = 6371000.0
+    
     var c = 2.0 * asin(sqrt(a))
-    return rad * c
+    return radius * c
    
    
 func coors_to_bearing(from, to):
