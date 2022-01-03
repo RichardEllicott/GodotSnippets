@@ -81,21 +81,24 @@ func haversine(lat1, lon1, lat2, lon2):
    
 func coors_to_bearing(from, to):
     """
-    gets the bearing between two sets of longitude lattitude coordinates (in degrees)
-    excel:
-        ATAN2(COS(lat1)*SIN(lat2)-SIN(lat1)*COS(lat2)*COS(lon2-lon1),SIN(lon2-lon1)*COS(lat2))   
-        
-    found here:
-        http://www.movable-type.co.uk/scripts/latlong.html
+
+    get the bearing from one coordinate to another
+    
+    ported from "Bearing":
+    http://www.movable-type.co.uk/scripts/latlong.html
+    
+    for some reason i had to reverse the long/lat
+    
+    
     """
 
-    var lat1 = deg2rad(from.x)
-    var lon1 = deg2rad(from.y)
-    var lat2 = deg2rad(to.x)
-    var lon2 = deg2rad(to.y)
+    var longitude = deg2rad(from.x) # x is the longitude
+    var latitude = deg2rad(from.y) # y the lattitude (to keep in map convention)
+    var longitude2 = deg2rad(to.x)
+    var latitude2 = deg2rad(to.y)
     
-    var a = sin(lon2-lon1)*cos(lat2)
-    var b = cos(lat1)*sin(lat2)-sin(lat1)*cos(lat2)*cos(lon2-lon1)
+    var a = sin(latitude2-latitude)*cos(longitude2)
+    var b = cos(longitude)*sin(longitude2)-sin(longitude)*cos(longitude2)*cos(latitude2-latitude)
     
     var bearing = atan2(a,b)
     return rad2deg(bearing)
