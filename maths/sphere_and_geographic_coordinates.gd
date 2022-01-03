@@ -73,3 +73,48 @@ func coors_to_bearing(from, to):
     
     var bearing = atan2(a,b)
     return rad2deg(bearing)
+    
+    
+    
+func travel_along_bearing(longitude=-33,latitude=173, bearing=-44, distance=1000*1000,radius = 6371000.0):
+    """
+    
+    travel from a longitude/latitude earth coordinate using a bearing in degrees for a distance in meters
+    
+    returns Vector2(longitude,latitude)
+    
+    ported from the javascript
+    "Destination point given distance and bearing from start point"
+    https://www.movable-type.co.uk/scripts/latlong.html
+    
+    oddly the results came out reversed, this is corrected to output the same as the website in decimal
+    
+    
+    TESTS:
+    44,128,76,1000*1000 => (45.505836, 140.498779)    web: 45° 30′ 21″ N, 140° 29′ 56″ E
+    
+    -33,173,-44,1000*1000 =>   (-26.336298, 166.040756)   webb: 26° 20′ 11″ S, 166° 02′ 27″ E   
+
+
+    """
+    
+    latitude = deg2rad(latitude) # we must convert our input degrees to radians 
+    longitude = deg2rad(longitude)
+    
+    bearing = deg2rad(bearing) # bearing also converted from degrees to radians
+    
+    
+    var distance_by_radius = distance/radius # we do not convert this to radians
+    
+    var longitude2 = asin( sin(longitude)*cos(distance_by_radius) +
+                      cos(longitude)*sin(distance_by_radius)*cos(bearing) );
+                    
+    var latitude2 = latitude + atan2(sin(bearing)*sin(distance_by_radius)*cos(longitude),
+                           cos(distance_by_radius)-sin(longitude)*sin(longitude2));
+                        
+                        
+    longitude2 = rad2deg(longitude2)
+    latitude2 = rad2deg(latitude2)
+    
+
+    return Vector2(longitude2,latitude2) # return radians to degrees
