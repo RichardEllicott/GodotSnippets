@@ -3,6 +3,14 @@
 everything to do with getting the coordinates of spheres, in order to make a spherical world like the earth
 
 
+i'm working on these at the moment to make a "geoscape" (like xcom)
+
+
+so far between coors_to_bearing and travel_along_bearing we have a solution for flying to targets
+
+note how the compass bearings change as we fly, this is the main source of misery, it's okay though because like a GPD we can calculate bearing each frame
+
+
 """
 
 
