@@ -11,6 +11,14 @@ everything to do with getting the coordinates of spheres, in order to make a sph
 ## this is a code version of using the rotation of nodes instead of position
 
 func geographic_coordinate_to_transform(longitude, latitude, _rotation = 0.0, radius = -2.0):
+
+    """
+    
+    i think this one works actually, it converts long/lat to a Vector3 world pos
+    
+    the problem i have is converting the Vector3 back, i have no working opposite function
+    
+    """
     
     var _transform = Transform()
     _transform = _transform.rotated (Vector3.RIGHT, deg2rad(longitude))
