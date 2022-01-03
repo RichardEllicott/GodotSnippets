@@ -23,8 +23,35 @@ func geographic_coordinate_to_transform(longitude, latitude, _rotation = 0.0, ra
     return _transform
 
 
-# WORKING:
+# WORKING new set from here:
    #http://www.movable-type.co.uk/scripts/latlong.html
+   
+   
+   
+
+func haversine(lat1, lon1, lat2, lon2):
+    
+    # ported from python 3 version:
+    # https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/
+    
+    # distance between latitudes
+    # and longitudes
+    var dLat = (lat2 - lat1) * PI / 180.0
+    var dLon = (lon2 - lon1) * PI / 180.0
+ 
+    # convert to radians
+    lat1 = (lat1) * PI / 180.0
+    lat2 = (lat2) * PI / 180.0
+ 
+    # apply formulae
+    var a = (pow(sin(dLat / 2.0), 2.0) +
+         pow(sin(dLon / 2.0), 2) *
+             cos(lat1) * cos(lat2));
+    var rad = 6371.0
+    var c = 2.0 * asin(sqrt(a))
+    return rad * c
+   
+   
    
 func coors_to_bearing(from, to):
     """
