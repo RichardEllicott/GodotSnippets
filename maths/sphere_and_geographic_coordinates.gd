@@ -11,6 +11,16 @@ so far between coors_to_bearing and travel_along_bearing we have a solution for 
 note how the compass bearings change as we fly, this is the main source of misery, it's okay though because like a GPD we can calculate bearing each frame
 
 
+
+most of them ported from here:
+https://www.movable-type.co.uk/scripts/latlong.html
+
+there's probabally some  innacuracy towards the poles, being on the pole certainly would break.
+there are vector alternatives to using angles, these might improve things
+
+https://www.movable-type.co.uk/scripts/latlong-vectors.html#intersection
+
+
 """
 
 
