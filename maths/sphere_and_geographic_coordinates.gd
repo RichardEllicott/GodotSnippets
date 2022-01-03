@@ -21,3 +21,28 @@ func geographic_coordinate_to_transform(longitude, latitude, _rotation = 0.0, ra
     _transform.origin = _transform.basis.z * radius
     
     return _transform
+
+
+# WORKING:
+   #http://www.movable-type.co.uk/scripts/latlong.html
+   
+func coors_to_bearing(from, to):
+    """
+    gets the bearing between two sets of longitude lattitude coordinates (in degrees)
+    excel:
+        ATAN2(COS(lat1)*SIN(lat2)-SIN(lat1)*COS(lat2)*COS(lon2-lon1),SIN(lon2-lon1)*COS(lat2))   
+        
+    found here:
+        http://www.movable-type.co.uk/scripts/latlong.html
+    """
+
+    var lat1 = deg2rad(from.x)
+    var lon1 = deg2rad(from.y)
+    var lat2 = deg2rad(to.x)
+    var lon2 = deg2rad(to.y)
+    
+    var a = sin(lon2-lon1)*cos(lat2)
+    var b = cos(lat1)*sin(lat2)-sin(lat1)*cos(lat2)*cos(lon2-lon1)
+    
+    var bearing = atan2(a,b)
+    return rad2deg(bearing)
