@@ -156,11 +156,12 @@ func travel_along_bearing(longitude=-33,latitude=173, bearing=-44, distance=1000
     
     
     
-    
-    
+
 static func lat_long_from_vector3(position : Vector3) -> Vector2:
     """
     get lat/long coors from vector3
+    
+    used to convert raycast result to world position
     
     ported from C#:
     https://stackoverflow.com/questions/5674149/3d-coordinates-on-a-sphere-to-latitude-and-longitude
@@ -175,13 +176,10 @@ static func lat_long_from_vector3(position : Vector3) -> Vector2:
     longitude = rad2deg(longitude)
     latitude = rad2deg(latitude)
     
-    if position.z > 0: # when z is positive we need to correct
-
-        latitude = -(180.0 - latitude) # corrects part
-        
-        # ensure angle is from -180° to 180°
-        latitude += 180.0 + 360.0 
-        latitude = fmod(latitude,360.0)
+    if position.z > 0: # when z is positive we need to correct result
+        # ensure final angle is from -180° to 180°
+        latitude = latitude + 360.0
+        latitude = fmod(latitude,360.0) # fmods should get positive numbers
         latitude -= 180.0
         
     return Vector2(longitude, latitude)
