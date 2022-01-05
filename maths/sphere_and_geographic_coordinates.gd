@@ -188,7 +188,12 @@ static func lat_long_from_vector3(position : Vector3) -> Vector2:
     
     
 # wrap an angle so it is between -180 an 180
-    
+# with inputs like (-180 and 180) never returns (-180) (only 180) (note this function uses ceiling not floor)
+# can be used to ensure a latitude is valid which should range from -180 to 180
+
 static func wrap_angle(angle) -> float:
     # https://stackoverflow.com/questions/2320986/easy-way-to-keeping-angles-between-179-and-180-degrees
-    return angle - (ceil((angle + 180.0)/360.0)-1.0)*360.0;   
+    # celing version returns a positive 180 degrees (floor version does not)
+    return angle - (ceil((angle + 180.0)/360.0)-1.0)*360.0 
+    
+    
