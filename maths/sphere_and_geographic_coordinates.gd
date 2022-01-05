@@ -162,27 +162,8 @@ static func lat_long_from_vector3(position : Vector3) -> Vector2:
     """
     ported from C#:
     https://stackoverflow.com/questions/5674149/3d-coordinates-on-a-sphere-to-latitude-and-longitude
-    
-    public static LatLon FromVector3(Vector3 position, float sphereRadius)
-    {
-        float lat = (float)Math.Acos(position.Y / sphereRadius); //theta
-        float lon = (float)Math.Atan(position.X / position.Z); //phi
-        return new LatLon(lat, lon);
-    }
-    
-    
-    NOTES:
-        works a bit but not for when around other side of sphere
-        
-        can be solved by correcting sine/cosines
-        
-        
-    if position.x < 0:
-        # is correct
-        
-    correct all answers
-    eliminated sphereRadius
-    
+   
+    major corrections, works all around globe now
     """
 
     position = position.normalized() # remove sphere radius
