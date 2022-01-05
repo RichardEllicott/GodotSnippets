@@ -153,3 +153,53 @@ func travel_along_bearing(longitude=-33,latitude=173, bearing=-44, distance=1000
     
 
     return Vector2(longitude2,latitude2) # return radians to degrees
+    
+    
+    
+    
+    
+static func lat_long_from_vector3(position : Vector3) -> Vector2:
+    """
+    ported from C#:
+    https://stackoverflow.com/questions/5674149/3d-coordinates-on-a-sphere-to-latitude-and-longitude
+    
+    public static LatLon FromVector3(Vector3 position, float sphereRadius)
+    {
+        float lat = (float)Math.Acos(position.Y / sphereRadius); //theta
+        float lon = (float)Math.Atan(position.X / position.Z); //phi
+        return new LatLon(lat, lon);
+    }
+    
+    
+    NOTES:
+        works a bit but not for when around other side of sphere
+        
+        can be solved by correcting sine/cosines
+        
+        
+    if position.x < 0:
+        # is correct
+        
+    correct all answers
+    eliminated sphereRadius
+    
+    """
+
+    position = position.normalized() # remove sphere radius
+    
+    var longitude = asin(position.y)
+    var latitude = atan(position.x / position.z); #phi
+    
+    longitude = rad2deg(longitude)
+    latitude = rad2deg(latitude)
+    
+    if position.z > 0: # when z is positive we need to correct
+
+        latitude = -(180.0 - latitude) # corrects part
+        
+        # ensure angle is from -180° to 180°
+        latitude += 180.0 + 360.0 
+        latitude = fmod(latitude,360.0)
+        latitude -= 180.0
+        
+    return Vector2(longitude, latitude)
