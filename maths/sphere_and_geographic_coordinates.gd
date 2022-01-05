@@ -160,10 +160,11 @@ func travel_along_bearing(longitude=-33,latitude=173, bearing=-44, distance=1000
     
 static func lat_long_from_vector3(position : Vector3) -> Vector2:
     """
+    get lat/long coors from vector3
+    
     ported from C#:
     https://stackoverflow.com/questions/5674149/3d-coordinates-on-a-sphere-to-latitude-and-longitude
-   
-    major corrections, works all around globe now
+    
     """
 
     position = position.normalized() # remove sphere radius
