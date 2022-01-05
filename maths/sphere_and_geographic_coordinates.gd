@@ -183,3 +183,12 @@ static func lat_long_from_vector3(position : Vector3) -> Vector2:
         latitude -= 180.0
         
     return Vector2(longitude, latitude)
+    
+    
+    
+    
+# wrap an angle so it is between -180 an 180
+    
+static func wrap_angle(angle) -> float:
+    # https://stackoverflow.com/questions/2320986/easy-way-to-keeping-angles-between-179-and-180-degrees
+    return angle - (ceil((angle + 180.0)/360.0)-1.0)*360.0;   
