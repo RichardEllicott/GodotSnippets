@@ -1,3 +1,22 @@
+class_name CSVTools
+
+##
+## CSVTools part of my Godot Cogs Library
+##
+## @desc:
+##     The description of the script, what it
+##     can do, and any further detail.
+##
+## @tutorial:            https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_documentation_comments.html
+## @tutorial(Tutorial2): http://the/tutorial2/url.com
+##
+
+
+
+
+
+## part of my Godot Cogs library
+##
 ## CSVTools contains a CSVTable class that reads csv tables (which are easy to edit with OpenOffice)
 ##
 ## EXAMPLES:
@@ -18,7 +37,7 @@
 ##
 
 
-class_name CSVTools
+
 
 
 ## CSVTable object for easy loading/saving of CSV table files

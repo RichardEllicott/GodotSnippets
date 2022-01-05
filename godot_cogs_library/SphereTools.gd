@@ -1,3 +1,16 @@
+class_name SphereTools
+
+##
+## SphereTools part of my Godot Cogs Library
+##
+## @desc:
+##     The description of the script, what it
+##     can do, and any further detail.
+##
+## @tutorial:            https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_documentation_comments.html
+## @tutorial(Tutorial2): http://the/tutorial2/url.com
+##
+
 """
 
 functions:
@@ -32,11 +45,16 @@ sources:
 
 """
 
-class_name SphereTools
+
 
 # geographical coordinates to a transform (with origin on top of the sphere)
 #   useful for getting the 3D world position
-static func geo_coor_to_transform(longitude, latitude, _rotation = 0.0, radius = -1.0):
+static func geo_coor_to_transform(
+    longitude: float,
+    latitude: float,
+    _rotation: float = 0.0,
+    radius: float = -1.0
+    ) -> Transform:
     """
     a quick method for translating longitude/latitude to a 3D position on a sphere
     
@@ -220,7 +238,60 @@ static func wrap_angle(angle) -> float:
 
 
 
-static func run_tests():
+
+# WARNING NOT WORKING (or at least half working)
+# this is basicly an ecquirectangular projection
+
+# i need it to find the position of a lat/long on the flat map
+
+func get_plane_coor(longitude,latitude):
+    """
+    
+    in the end adapted from this maths:
+        https://en.wikipedia.org/wiki/Equirectangular_projection
+        
+    the key ideas are the lattitude (x) is linear
+    the longitude (y) however distorts and involves a cosine
+        
+    some random corrections applied
+    
+    
+    MAJOR PROBEM NOT WORKING!
+    
+    the problem is likely to do with the lattitude distortion as we travel up the map
+    
+    this is why going up to the UK worked (straight)
+    also the equator worked
+    
+    however more than one long or lat causes distortion 
+
+        
+    """
+    var y = -longitude * cos(deg2rad(latitude))
+    var x = latitude
+    
+    # setting to -1 -> 1
+    x /= 180.0
+    y /= 90.0
+
+    # correcting from -1 -> 1  to    0.0 -> 1.0   
+    x /= 2.0
+    y /= 2.0
+    x += 0.5
+    y += 0.5
+    
+    return Vector2(x,y)
+
+
+
+
+
+
+
+
+# THESE TESTS ARE PRETTY SHODDY
+# IT'S FAR EASIER TO TEST THESE FUNCTIONS VISUALLY
+static func test():
     
     print("test gcs_coor_to_transform...")
     
@@ -229,10 +300,6 @@ static func run_tests():
     
     
     test_great_circle_distance()
-    
-    
-    
-    
     
 static func test_great_circle_distance():
     
