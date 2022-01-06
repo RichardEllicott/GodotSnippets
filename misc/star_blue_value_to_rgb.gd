@@ -1,11 +1,11 @@
 """
 
-for converting a starts blue value color to rgb
+for converting a stars blue value color to rgb
 
 real stars have a "blue value" or color index (ci) in the star data
 
 
-
+this is related to black-body radiation, and color temperature of light, it is used to make the stars look correct (red dwarfs to blue stars)
 
 """
 
