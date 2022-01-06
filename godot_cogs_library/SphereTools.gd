@@ -244,7 +244,7 @@ static func wrap_angle(angle) -> float:
 
 # i need it to find the position of a lat/long on the flat map
 
-func get_plane_coor(longitude,latitude):
+static func get_plane_coor(longitude: float,latitude: float) -> Vector2:
     """
     
     in the end adapted from this maths:
