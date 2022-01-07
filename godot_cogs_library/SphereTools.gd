@@ -130,7 +130,7 @@ static func great_circle_distance(from: Vector2, to: Vector2, radius: float = 63
     return radius * c
     
 # get the bearing of a target (to) from a position (from)
-static func get_target_bearing(from, to) -> float:
+static func coors_to_bearing(from, to) -> float:
     """
     get the bearing from one gcs coordinate to another in degrees
     
@@ -155,7 +155,7 @@ static func get_target_bearing(from, to) -> float:
     return rad2deg(bearing)
     
 # move from a geo coordinate along a bearing by a distance
-static func move_by_bearing_and_distance(
+static func move_along_bearing(
         from: Vector2, # start coordinate Vector2(longitude,latitude)
         bearing: float, # compass bearing in degrees
         distance: float, # distance to travel in meters
@@ -331,5 +331,49 @@ static func test_great_circle_distance():
     pass
 
 
+
+
+## gaussian_2D for random earth corrdinates
+static func gaussian_2D(r1: float = randf(), r2: float = randf()) -> Vector2:
+    """
+    ported from the caltech lua one (i think, the link is dead!)
+    http://www.design.caltech.edu/erik/Misc/Gaussian.html
+    r1 and r2 are floats from 0 to 1
+    ran_gaussian_2D(randf(),randf())
+    """
+    var al1 = sqrt(-2 * log(r1)) # part one
+    var al2 = 2 * PI * r2 # part two
+    var x = al1 * cos(al2)
+    var y = al1 * sin(al2)
+    return Vector2(x,y)
+
+
+static func gaussian_3D(r1: float = randf(), r2: float = randf(),r3: float = randf(), r4: float = randf()) -> Vector3:
+    """
+    hacky guassian 3D from the 2D
+    """
+    var gauss1 = gaussian_2D(r1,r2)
+    var gauss2 = gaussian_2D(r3,r4)
+    return Vector3(gauss1.x,gauss1.y,gauss2.x)
+
+
+
+    
+    
+static func get_random_geo_coor(random_number_gen: RandomNumberGenerator) ->Vector2:
+    ## returns a random position on earth, totally neutral, no patterns
+    
+    ## uses a 3D normal distribution to gather a random 3D direction
+    ## coverts that direction to longitude/latitude coordinates
+    
+    var ran_pos = gaussian_3D(
+            random_number_gen.randf(),
+            random_number_gen.randf(),
+            random_number_gen.randf(),
+            random_number_gen.randf())
+    
+    var ran_coor = world_pos_to_geo_coor(ran_pos)
+    
+    return ran_coor
 
     

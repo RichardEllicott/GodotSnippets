@@ -112,9 +112,12 @@ class CSVTable:
     func get_row_as_dict(row = 0):
         var record = body[row] # the record as a array
         var ret = {} # return dict
-        for i in header.size():
-            ret[header[i]] = record[i]
-        return ret
+        
+        if record.size() == header.size(): # only valid records have the correct number of entries
+            for i in header.size():
+                ret[header[i]] = record[i]
+                
+        return ret # returns empty dict if record is wrong size
 
     ## record count
     func get_record_count() -> int:
