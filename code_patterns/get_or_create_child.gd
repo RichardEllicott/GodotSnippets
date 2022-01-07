@@ -10,7 +10,7 @@ quickly create a child node of type if missing (works in tool mode)
 ## get a child, or create if not available (cannot be static)
 ## example:
 ##     var node = get_or_create_child(self,"CITIES",Spatial)
-func get_or_create_child(parent: Node,node_name: String, node_type = Spatial) -> Node:
+func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:
         
     var node_ref = parent.get_node_or_null(node_name) # get the node if present
     if not is_instance_valid(node_ref): # if no node found make one
