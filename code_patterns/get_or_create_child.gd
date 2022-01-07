@@ -6,6 +6,7 @@ quickly create a child node of type if missing (works in tool mode)
 """
 
 
+
 ## get a child, or create if not available (cannot be static)
 ## example:
 ##     var node = get_or_create_child(self,"CITIES",Spatial)
@@ -21,3 +22,12 @@ func get_or_create_child(parent: Node,node_name: String, node_type = Spatial) ->
     assert(node_ref is node_type) # best to check the type matches
     
     return node_ref
+        
+
+
+## example usage of get_or_create_child: 
+var _control_nodes
+func get_control_nodes():
+    if not is_instance_valid(_control_nodes):
+      _control_nodes = get_or_create_child(self,"CONTROL",Node)
+    return _control_nodes
