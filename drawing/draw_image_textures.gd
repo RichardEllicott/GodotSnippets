@@ -44,7 +44,7 @@ func draw_image_texture_example():
 # Godot can be inconsistant with locks and various things like this so it's probabally that there's a delay updating the image
 
 # therefore it doesn't seem appropiate to use an image as a data container like i was trying
-# it doesn't work great to update on the fly, it's best to save as some arrays and then copy to an image at the end
+# it doesn't work great to update on the fly, it's best to save as some arrays and then draw the image in one go
 
 var _image : Image
 
