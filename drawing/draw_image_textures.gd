@@ -33,3 +33,36 @@ func draw_image_texture_example():
     
     
     pass
+
+
+
+
+
+
+
+
+var _image : Image
+
+var image_size = Vector2(1024,1024)
+
+func get_image():
+    if not _image:
+        _image = Image.new()
+        _image.create(image_size.x,image_size.y,false,Image.FORMAT_RGBA8)
+    return _image
+
+
+func image_set_pixel(x,y,val):
+    get_image()    
+    _image.lock()
+    _image.set_pixel(1, 1, val)
+    _image.unlock()
+
+    
+
+func image_get_pixel(x,y):
+    get_image()
+    _image.lock()
+    var val = _image.get_pixel(x, y)
+    _image.unlock()
+    return val
