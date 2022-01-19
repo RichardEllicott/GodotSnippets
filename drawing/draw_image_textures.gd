@@ -1,15 +1,36 @@
+"""
+
+
+working example of drawing an image in code and loading a texture from it
+
+"""
 
 
 
-var image = $Sprite.texture.get_data()
-image.unlock()
+export(Image) var _image : Image
+export(ImageTexture) var _texture : ImageTexture
 
-image.fill(Color(1,0,0,1)) # fill the image
 
-image.lock()
+func draw_image_texture_example():
+    
+    # working min example 2022
+    
+    if not _image:
+        _image = Image.new()
+        _image.create(1024,1024,false,Image.FORMAT_RGBA8)
+        
+    _image.lock()
+    
+    _image.fill(Color.blue)
 
-image.set_pixel(2,2,Color.blue)
+    _image.set_pixel(1, 1, Color.red) # set one pixel
+    
+    _image.unlock()
+    
+    _texture = ImageTexture.new()
 
-var imageTexture = ImageTexture.new()
-imageTexture.create_from_image(image)
-$Sprite.texture = imageTexture
+    _texture.create_from_image(_image)
+    #_texture.create_from_image(_image, Texture.FLAGS_FILTER | Texture.FLAGS_REPEAT)
+    
+    
+    pass
