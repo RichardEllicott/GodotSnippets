@@ -40,6 +40,8 @@ func draw_image_texture_example():
 
 
 
+# trying to reduce the code to easy functions, doesn't seem to always work
+# Godot can be inconsistant with locks and various things like this so it's probabally that there's a delay updating the image
 
 var _image : Image
 
