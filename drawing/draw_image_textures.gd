@@ -14,10 +14,9 @@ export(ImageTexture) var _texture : ImageTexture
 func draw_image_texture_example():
     
     # working min example 2022
-    
-    if not _image:
-        _image = Image.new()
-        _image.create(1024,1024,false,Image.FORMAT_RGBA8)
+
+    _image = Image.new()
+    _image.create(1024,1024,false,Image.FORMAT_RGBA8)
         
     _image.lock()
     
