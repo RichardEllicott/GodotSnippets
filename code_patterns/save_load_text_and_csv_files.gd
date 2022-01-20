@@ -10,10 +10,16 @@ https://godotengine.org/qa/52307/can-you-read-a-textfile-resource-with-gdscript
 export(String, FILE, "*.txt,*.csg") var file_example = "" # how to export a txt file's path
 
 
-func load_text_file(path):
-    """
-    load text file return string
-    """
+static func string_to_file(path, text) -> void:
+    var f = File.new()
+    var err = f.open(path, File.WRITE)
+    if err != OK:
+        printerr("Could not write file, error code ", err)
+        return
+    f.store_string(text)
+    f.close()
+    
+static func file_to_string(path) -> String:
     var f = File.new()
     var err = f.open(path, File.READ)
     if err != OK:
@@ -22,19 +28,6 @@ func load_text_file(path):
     var text = f.get_as_text()
     f.close()
     return text
-
-
-func save_text_file(text, path):
-    """
-    save string as text file
-    """
-    var f = File.new()
-    var err = f.open(path, File.WRITE)
-    if err != OK:
-        printerr("Could not write file, error code ", err)
-        return
-    f.store_string(text)
-    f.close()
 
 
 
