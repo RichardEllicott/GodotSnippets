@@ -54,7 +54,7 @@ enum Mode {
     mode3,
    }
 
-export(Mode) var mode = false setget set_mode
+export(Mode) var mode = 0 setget set_mode
 func set_mode(input):
     mode = input
     print("Mode set to \"%s\", trigger update!" % [mode])
