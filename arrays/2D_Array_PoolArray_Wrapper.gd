@@ -29,7 +29,7 @@ class TwoDimensionalRealArray:
     func _get_cell_ref(x : int, y : int) -> int:
         
         assert(x < _width) # force a crash if out of range query is made, this is better than wacky return data
-        assert(y < _height)
+        assert(y < _height) # same as normal, if you have a width of 8, you can query cells 0-7
         
         return x + (y * _width)
     
