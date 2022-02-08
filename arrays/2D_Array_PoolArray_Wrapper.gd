@@ -5,7 +5,7 @@ there are no 2D arrays in Godot.... however this wrapper shows how to use a Pool
 
 example:
     
-var test1 = TwoDimensionalArray.new(4,8)
+var test1 = TwoDimensionalRealArray.new(4,8)
 
 
 test1.clear() # call to clear the array of garbage it would start with (for speed it won't clear this automaticly)
@@ -18,22 +18,7 @@ print(test1.get_cell(3,7))
 """
 
 
-class TwoDimensionalArray:
-    
-    """
-    
-    wrap a PoolRealArray to behave like a 2D array
-    
-    works like a 2D array of 32bit floats (warning Godot normally uses 64bit)
-    
-    
-    WARNING, before filling the cells, they will be full of garbage
-    it saves time to not bother clearing them and wait until we set them manually
-    
-    alternativly i included a "clear" function to set them to zero
-    
-    """
-
+class TwoDimensionalRealArray:
     
     var pool : PoolRealArray
     
