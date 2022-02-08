@@ -18,7 +18,7 @@ print(test1.get_cell(3,7))
 """
 
 
-class TwoDimensionalRealArray:
+class TwoDimensionRealArray:
     
     var pool : PoolRealArray
     
