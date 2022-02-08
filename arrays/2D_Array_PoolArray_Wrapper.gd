@@ -1,4 +1,21 @@
+"""
 
+there are no 2D arrays in Godot.... however this wrapper shows how to use a PoolArray for an Array basicly as effecient as a 2D array just a bit more ugly
+
+
+example:
+    
+var test1 = TwoDimensionalArray.new(4,8)
+
+
+test1.clear() # call to clear the array of garbage it would start with (for speed it won't clear this automaticly)
+test1.set_cell(3,7, 8888)
+
+print(test1.pool)
+    
+print(test1.get_cell(3,7))
+
+"""
 
 
 class TwoDimensionalArray:
