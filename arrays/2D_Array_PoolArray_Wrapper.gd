@@ -18,20 +18,28 @@ print(test1.get_cell(3,7))
 """
 
 
+
+
+
+
 class TwoDimensionRealArray:
     
     var pool : PoolRealArray
     
-    var _width : int # private vars
-    var _height : int
+    var width : int # private vars
+    var height : int
     
     ## return the pool array reference number from (x,y) data
     func _get_cell_ref(x : int, y : int) -> int:
         
-        assert(x < _width) # force a crash if out of range query is made, this is better than wacky return data
-        assert(y < _height) # same as normal, if you have a width of 8, you can query cells 0-7
+        assert(x < width) # force a crash if out of range query is made, this is better than wacky return data
+        assert(y < height)
         
-        return x + (y * _width)
+        return x + (y * width)
+        
+        
+    func is_pos_in_range(x,y):
+        return x < width and y < height and x >= 0 and y >= 0
     
     ## return a cell value
     func get_cell(x : int, y : int) -> float:
@@ -43,8 +51,8 @@ class TwoDimensionRealArray:
         
     ## clear all cells by overwiting them (default with 0.0)
     func clear(default_value : float = 0.0):
-        for y in _height:
-            for x in _width:
+        for y in height:
+            for x in width:
                 set_cell(x,y,default_value)
     
     ## we require the width and height to build the object
@@ -52,5 +60,5 @@ class TwoDimensionRealArray:
         pool = PoolRealArray() # create a new pool
         pool.resize(width*height) # set it's size in advance (warning garbage data now present)
         
-        _width = width # height and width saved to private vars for later usage
-        _height = height
+        self.width = width # height and width saved to private vars for later usage
+        self.height = height
