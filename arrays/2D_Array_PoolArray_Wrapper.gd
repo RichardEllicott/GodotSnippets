@@ -38,7 +38,7 @@ class TwoDimensionRealArray:
         return x + (y * width)
         
         
-    func is_pos_in_range(x,y):
+    func is_pos_in_range(x,y) -> bool:
         return x < width and y < height and x >= 0 and y >= 0
     
     ## return a cell value
@@ -63,9 +63,7 @@ class TwoDimensionRealArray:
         self.width = width # height and width saved to private vars for later usage
         self.height = height
 
-
-
-
+    
 
 class TwoDimensionVector3Array:
     
@@ -83,7 +81,7 @@ class TwoDimensionVector3Array:
         return x + (y * width)
         
         
-    func is_pos_in_range(x,y):
+    func is_pos_in_range(x,y) -> bool:
         return x < width and y < height and x >= 0 and y >= 0
     
     ## return a cell value
@@ -107,3 +105,4 @@ class TwoDimensionVector3Array:
         
         self.width = width # height and width saved to private vars for later usage
         self.height = height
+        
