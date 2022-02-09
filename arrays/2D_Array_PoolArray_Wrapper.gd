@@ -62,3 +62,48 @@ class TwoDimensionRealArray:
         
         self.width = width # height and width saved to private vars for later usage
         self.height = height
+
+
+
+
+
+class TwoDimensionVector3Array:
+    
+    var pool : PoolVector3Array
+    
+    var width : int # private vars
+    var height : int
+    
+    ## return the pool array reference number from (x,y) data
+    func _get_cell_ref(x : int, y : int) -> int:
+        
+        assert(x < width) # force a crash if out of range query is made, this is better than wacky return data
+        assert(y < height)
+        
+        return x + (y * width)
+        
+        
+    func is_pos_in_range(x,y):
+        return x < width and y < height and x >= 0 and y >= 0
+    
+    ## return a cell value
+    func get_cell(x : int, y : int) -> Vector3:
+        return pool[_get_cell_ref(x,y)]
+        
+    ## set a cell value
+    func set_cell(x : int, y : int, val : Vector3):
+        pool[_get_cell_ref(x,y)] = val
+        
+    ## clear all cells by overwiting them (default with 0.0)
+    func clear(default_value : Vector3 = Vector3()):
+        for y in height:
+            for x in width:
+                set_cell(x,y,default_value)
+    
+    ## we require the width and height to build the object
+    func _init(width, height):
+        pool = PoolVector3Array() # create a new pool
+        pool.resize(width*height) # set it's size in advance (warning garbage data now present)
+        
+        self.width = width # height and width saved to private vars for later usage
+        self.height = height
