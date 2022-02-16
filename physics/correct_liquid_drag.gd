@@ -36,20 +36,39 @@ cowboy maybe :)
 
 
 
-func square_with_neg(base, _exp = 2):
+
+
+func negative_pow(base, _exp = 2):
+    """
+    square function that preserves negative
     
+    ie:
+        2 => 4
+        3 => 9
+        -2 => -4 # note power preserved
+        -3 => -9
+    
+    """
     var negative = false
     
     if base < 0:
         negative = true
-        base *= -1 # make positive
+        base = -base # make positive
         
     base = pow(base,_exp)
 
     if negative:
-        base *= -1.0
+        base = -base
         
     return base
+    
+func square_vec3(vec3):
+    return Vector3(
+        negative_pow(vec3.x),
+        negative_pow(vec3.y),
+        negative_pow(vec3.z)
+        )
+
     
 func get_drag_force(velocity, coeffecient = 1):
     """
@@ -77,6 +96,13 @@ func get_drag_force(velocity, coeffecient = 1):
 
     
     """
+    
+    var drag = square_vec3(velocity)
+    
+    drag *= -1.0
+    drag *= coeffecient
+    
+    return drag
     
     var drag = Vector3()
     drag.x = square_with_neg(velocity.x)
