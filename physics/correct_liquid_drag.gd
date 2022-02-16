@@ -38,8 +38,7 @@ cowboy maybe :)
 
 
 
-
-func negative_pow(base, _exp = 2):
+func neg_pow(base, _exp = 2):
     """
     square function that preserves negative
     
@@ -47,7 +46,7 @@ func negative_pow(base, _exp = 2):
         2 => 4
         3 => 9
         -2 => -4 # note power preserved
-        -3 => -9
+        -3 => -9 # note power preserved
     
     """
     var negative = false
@@ -65,9 +64,9 @@ func negative_pow(base, _exp = 2):
     
 func square_vec3(vec3):
     return Vector3(
-        negative_pow(vec3.x),
-        negative_pow(vec3.y),
-        negative_pow(vec3.z)
+        neg_pow(vec3.x),
+        neg_pow(vec3.y),
+        neg_pow(vec3.z)
         )
 
     
@@ -80,27 +79,16 @@ func get_drag_force(velocity, coeffecient = 1):
     
     https://en.wikipedia.org/wiki/Drag_(physics)
     
-    
     F = 1/2 p v^2 C A
     
-    Force = 1/2 * density * velocity^2 * drag_coefficient * crosssection_area
+    reduced so the new dimensionaless coeffecient
+    
+    coeffecient = 1/2 p C A
     
     
-    it's approximtaly correct for a spheroid at sub-sonic speeds
-    
-    
-    the only real important thing to note is that the drag is a square of the speed, not linear
-    
-    
-    thusly my drag coeffecient is also a "dimensionless number", it just has to be set to look right
-    
-
+    so this function returns:
+        -(coeffecient * v^2)
     
     """
-    
-    var drag = square_vec3(velocity)
-    
-    drag *= -1.0
-    drag *= coeffecient
-    
-    return drag
+
+    return square_vec3(velocity) * -1.0 * coeffecient
