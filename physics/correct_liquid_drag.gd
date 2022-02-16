@@ -30,8 +30,7 @@ velocity = velocity + (drag_force * delta)
 that is because Force can be expressed as Newtons or acceleration (m/s/s) , multiplying by delta results in m/s
 
 
-don't trust me, you need to brush up on your physics :P
-
+cowboy maybe :)
 
 """
 
