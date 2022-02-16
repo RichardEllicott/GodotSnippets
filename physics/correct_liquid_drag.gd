@@ -38,6 +38,7 @@ cowboy maybe :)
 
 
 
+
 func negative_pow(base, _exp = 2):
     """
     square function that preserves negative
@@ -98,16 +99,6 @@ func get_drag_force(velocity, coeffecient = 1):
     """
     
     var drag = square_vec3(velocity)
-    
-    drag *= -1.0
-    drag *= coeffecient
-    
-    return drag
-    
-    var drag = Vector3()
-    drag.x = square_with_neg(velocity.x)
-    drag.y = square_with_neg(velocity.y)
-    drag.z = square_with_neg(velocity.z)
     
     drag *= -1.0
     drag *= coeffecient
