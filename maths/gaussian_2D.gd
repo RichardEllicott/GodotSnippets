@@ -36,6 +36,8 @@ func gaussian_2D(r1 = randf(), r2 = randf()):
     """
     ported from the caltech lua one (i think, the link is dead!)
     http://www.design.caltech.edu/erik/Misc/Gaussian.html
+    
+    https://www.taygeta.com/random/gaussian.html # new link
 
     r1 and r2 are floats from 0 to 1
 
