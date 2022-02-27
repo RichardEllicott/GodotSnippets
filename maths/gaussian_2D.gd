@@ -29,6 +29,9 @@ time taken: 2146 # this method
 time taken: 3534 # "The Marsaglia polar method"
 
 
+note the RandomNumberGenerator has a guassian, randfn 
+
+
 
 """
 
