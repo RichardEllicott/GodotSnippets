@@ -38,6 +38,8 @@ func gaussian_2D(r1 = randf(), r2 = randf()):
     http://www.design.caltech.edu/erik/Misc/Gaussian.html
     
     https://www.taygeta.com/random/gaussian.html # new link
+    
+    https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
 
     r1 and r2 are floats from 0 to 1
 
