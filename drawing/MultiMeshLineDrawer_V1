@@ -1,0 +1,114 @@
+"""
+
+
+using a multimesh to draw many lines ... THIS IS NOW MAIN TEMPLATE!
+
+
+
+
+need to make a multimesh with a cylinder in it:
+
+the cylinder should have a diameter of 1 (radius 0.5)
+
+it should go from (0,0,0) to (1,0,0)
+
+so it is basicly extending along the x axis by one unit
+
+
+this cylinder will be stretched around to become a line, the shape is required for operation
+
+
+
+"""
+tool
+extends MultiMeshInstance
+class_name MultiMeshLineDrawer
+
+
+export var tool_update = false setget set_tool_update
+func set_tool_update(input):
+    if input:
+        tool_update()
+        tool_update = false
+
+func tool_update():
+    _ready() # ensure vars are available
+    print(self, "run tool_update functions here...")
+
+    
+    
+func _ready():
+    
+    multimesh.transform_format = MultiMesh.TRANSFORM_3D
+    
+    
+    pass
+
+
+
+func set_line_instance(i,from,to,width):
+    multimesh.set_instance_transform (i,calc_final_transform(to-from,from,width))
+
+
+func calc_final_transform(_mag_vector,_offset,_width):
+    """
+    
+
+    this calculates a final transform to rotate a cylinder
+    
+    this cylinder goes from (0,0,0) to (1,0,0)
+    
+    so it is basicly 1 unit long along the x axis
+    
+    WARNING:
+        the maths in this simple project took a while to figure out and had many changes
+        unfortunatly so some of the logic of the acos
+        
+        some of the corrections avoids entering 0 into a divion or atan
+        
+        basicly created with some trial and error so the notes are incomplete
+
+
+    to use this as a to and from:
+    
+    _mag_vector = to - from
+    _offset = from
+
+
+    """
+
+    var mag_vector_copy = _mag_vector # correcting backwards bug (UNSURE STILL
+    mag_vector_copy.x = -mag_vector_copy.x
+    mag_vector_copy.z = -mag_vector_copy.z
+
+    var trans = Transform() # our transform matrix
+    
+    # stretch to the right length
+    trans = trans.scaled(Vector3(mag_vector_copy.length(),_width,_width))
+    
+    var A = sqrt(pow(mag_vector_copy.x, 2.0) + pow(mag_vector_copy.z,2.0))
+    #only rotate 2nd time if y is not 0, this elimnates a scene destroying bug!
+    
+    # rotate the on the z axis as the pitch
+    if mag_vector_copy.y != 0.0: # avoids a bug? (no pitch required if no y on mag_vector)
+        var H = mag_vector_copy.length()
+        var theta = acos(A/H)
+        if mag_vector_copy.y < 0.0: # WEIRD CORRECTION!!
+            theta = -theta
+    
+        trans = trans.rotated(Vector3(0.0,0.0,1.0), theta)
+        
+    # rotate around the horizon as the direction (needs to be second rotation)
+    trans = trans.rotated(Vector3.UP,atan2(mag_vector_copy.z,-mag_vector_copy.x))
+    
+    # this moves the offset (ignoring the scale and rotation), done last
+    trans.origin += _offset 
+
+    return trans
+    
+    
+    
+
+    
+    
+    
