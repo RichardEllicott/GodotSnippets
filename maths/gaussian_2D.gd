@@ -29,6 +29,9 @@ time taken: 2146 # this method
 time taken: 3534 # "The Marsaglia polar method"
 
 
+note the RandomNumberGenerator has a guassian, randfn 
+
+
 
 """
 
@@ -36,6 +39,10 @@ func gaussian_2D(r1 = randf(), r2 = randf()):
     """
     ported from the caltech lua one (i think, the link is dead!)
     http://www.design.caltech.edu/erik/Misc/Gaussian.html
+    
+    https://www.taygeta.com/random/gaussian.html # new link
+    
+    https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
 
     r1 and r2 are floats from 0 to 1
 

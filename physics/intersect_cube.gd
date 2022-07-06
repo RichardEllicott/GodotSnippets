@@ -1,14 +1,8 @@
 """
 
-query in 3D space, should return static colliders an areas
+query in 3D space, should return static colliders and areas
 
-note that for tool scripts, the areas seem reliable but the static colliders not
-
-
-seemed to detect repeated results, need to test this
-
-
-
+use as one shot functions or as example
 
 
 """
