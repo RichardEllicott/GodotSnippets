@@ -3,7 +3,6 @@
 const float PI =   3.14159265358979323846264338327950288419716939937510;
 
 
-
 // https://godotforums.org/d/19408-random-number-generation/3
 float rand2f(vec2 co){
     return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
@@ -12,7 +11,7 @@ float rand2f(vec2 co){
 
 vec3 gerstner_wave(vec3 _vert_in, float _time, float _angle, float _frequency, float _amplitude){
 
-	// a 3D Vector based gerstner wave
+	// an angle 3D Vector based gerstner wave
 
 	//https://docs.godotengine.org/en/3.5/tutorials/shaders/shader_reference/shading_language.html?highlight=shading%20language
 
