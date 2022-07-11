@@ -318,24 +318,25 @@ float pnoise(vec4 P, vec4 rep) {
 
 
 
+
 // using this method with above noise:
 // https://godotshaders.com/snippet/fractal-brownian-motion-fbm/
-float fbm4d(vec4 x) {
-	float height = 0.0;
-	float amplitude = 0.5;
-	float frequency = 3.0;
+// note in GLSL, this lib uses a lot of underscores to avoid conflicts!
+float fbm4d(vec4 _x) {
+	float _height = 0.0;
+	float _amplitude = 0.5;
+	float _frequency = 3.0;
 	for (int i = 0; i < 6; i++){
 
-	vec4 pos = x * frequency;
+	vec4 _pos = _x * _frequency;
 
-	height += cnoise(pos) * amplitude;
+	_height += cnoise(_pos) * _amplitude;
 	
-    amplitude *= 0.5;
-    frequency *= 2.0;
+    _amplitude *= 0.5;
+    _frequency *= 2.0;
   }
-  return height;
+  return _height;
 }
-
 
 	
 
