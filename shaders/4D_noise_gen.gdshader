@@ -1,4 +1,16 @@
+/*
 
+i collected what i think are the best noise generators for copy and pasting into the "global expression" of a visual shader (or otherwise into a normal shader)
+
+
+
+USAGE EXAMPLE (noise animation):
+
+float height = fbm4d(vec4(uv.x,uv.y,TIME * time_scale,0.0) * noise_scale) * 1.0 + 0.5;
+color_out = vec3(height,height,height);
+
+
+*/
 // GLSL textureless classic 4D noise "cnoise",
 // with an RSL-style periodic variant "pnoise".
 // Author:  Stefan Gustavson (stefan.gustavson@liu.se)
@@ -300,7 +312,10 @@ float pnoise(vec4 P, vec4 rep) {
 }
 
 
-float fbm4(vec4 x) {
+
+// using this method with above noise:
+// https://godotshaders.com/snippet/fractal-brownian-motion-fbm/
+float fbm4d(vec4 x) {
 	float height = 0.0;
 	float amplitude = 0.5;
 	float frequency = 3.0;
@@ -316,14 +331,7 @@ float fbm4(vec4 x) {
   return height;
 }
 
-/*
-EXAMPLE:
 
-float height = fbm4(vec4(uv.x,uv.y,TIME * time_scale,0.0) * noise_scale) * 1.0 + 0.5;
-color_out = vec3(height,height,height);
-
-
-*/
 	
 
 
