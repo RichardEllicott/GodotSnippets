@@ -381,8 +381,68 @@ float worley(vec2 uv, float columns, float rows) {
 	return minimum_dist;
 }
 
-// AMAZING LOOKING BOOK OF SHADERS ONE:
-// https://thebookofshaders.com/12/
+
+
+
+// RIP FROM SHADERTOY:
+// https://www.shadertoy.com/view/WdfyRl
+
+// EXAMPLE:
+// vec4 worley = worley(UV,TIME * time_scale);
+// color_out = vec3(worley.xyz);
+
+
+vec2 random2(vec2 uv)
+{
+    uv = vec2(dot(uv,vec2(127.1,311.7)),
+              dot(uv,vec2(269.5,183.3)));
+    return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
+}
+
+
+
+vec4 worley(vec2 fragCoord, float iTime ){
+
+	vec2 iResolution = vec2(1.0,1.0);
+
+    float cellNum = 10.;
+    
+    vec2 uv = fragCoord/iResolution.xy;
+    
+    uv.x *= iResolution.x / iResolution.y;
+    
+    uv *= cellNum;
+    
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+    
+    float minDist = 1.;
+    
+    for (int y = -1; y <= 1; y++)
+    {
+        for (int x = -1; x <= 1; x++)
+        {
+            vec2 neighbor = vec2(float(x), float(y));
+            
+            vec2 point = random2(i + neighbor);
+            
+            point = 0.5 + 0.5 * sin(iTime + 6.2831 * point);
+            
+            float dist = length(neighbor + point - f);
+            
+            minDist = min(minDist, dist);
+        }
+    }
+	return vec4(vec3(minDist),1.);
+}
+
+
+
+
+
+
+
+
 
 
 
