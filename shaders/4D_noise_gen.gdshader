@@ -16,6 +16,9 @@ color_out = vec3(height,height,height);
 
 
 */
+
+
+
 // GLSL textureless classic 4D noise "cnoise",
 // with an RSL-style periodic variant "pnoise".
 // Author:  Stefan Gustavson (stefan.gustavson@liu.se)
@@ -317,28 +320,92 @@ float pnoise(vec4 P, vec4 rep) {
 }
 
 
-
-
-// using this method with above noise:
-// https://godotshaders.com/snippet/fractal-brownian-motion-fbm/
-// note in GLSL, this lib uses a lot of underscores to avoid conflicts!
-float fbm4d(vec4 _x) {
-	float _height = 0.0;
-	float _amplitude = 0.5;
-	float _frequency = 3.0;
+float fbm4(vec4 x) {
+	float height = 0.0;
+	float amplitude = 0.5;
+	float frequency = 3.0;
 	for (int i = 0; i < 6; i++){
 
-	vec4 _pos = _x * _frequency;
+	vec4 pos = x * frequency;
 
-	_height += cnoise(_pos) * _amplitude;
+	height += cnoise(pos) * amplitude;
 	
-    _amplitude *= 0.5;
-    _frequency *= 2.0;
+    amplitude *= 0.5;
+    frequency *= 2.0;
   }
-  return _height;
+  return height;
 }
 
+/*
+EXAMPLE:
+
+float height = fbm4(vec4(uv.x,uv.y,TIME * time_scale,0.0) * noise_scale) * 1.0 + 0.5;
+color_out = vec3(height,height,height);
+
+
+*/
+
+//https://godotshaders.com/snippet/voronoi/
+// not animated
+
+/*
+void fragment() {
+	float worley = worley(UV, 3.0, 5.0);
+	COLOR = vec4(vec3(worley), 1.0);
+}
+*/
+
+vec2 random(vec2 uv) {
+	return vec2(fract(sin(dot(uv.xy,
+		vec2(12.9898,78.233))) * 43758.5453123));
+}
+
+float worley(vec2 uv, float columns, float rows) {
 	
+	vec2 index_uv = floor(vec2(uv.x * columns, uv.y * rows));
+	vec2 fract_uv = fract(vec2(uv.x * columns, uv.y * rows));
+	
+	float minimum_dist = 1.0;  
+	
+	for (int y= -1; y <= 1; y++) {
+		for (int x= -1; x <= 1; x++) {
+			vec2 neighbor = vec2(float(x),float(y));
+			vec2 point = random(index_uv + neighbor);
+			
+			vec2 diff = neighbor + point - fract_uv;
+			float dist = length(diff);
+			minimum_dist = min(minimum_dist, dist);
+		}
+	}
+	
+	return minimum_dist;
+}
+
+// AMAZING LOOKING BOOK OF SHADERS ONE:
+// https://thebookofshaders.com/12/
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
