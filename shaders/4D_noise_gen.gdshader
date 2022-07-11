@@ -1,8 +1,13 @@
 /*
 
+UPDATED 11/07/2022
+
 i collected what i think are the best noise generators for copy and pasting into the "global expression" of a visual shader (or otherwise into a normal shader)
 
+4D perlin with Fractal Brownian Motion can over many scenarios including:
 
+water height noise that is animated so that it shows a seamless animation and no quilting
+changing 3D clouds, again with no repetation
 
 USAGE EXAMPLE (noise animation):
 
