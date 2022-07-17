@@ -23,10 +23,9 @@ func set_tool_update(input):
 func tool_update():
     _ready() # ensure vars are available
     print(self, "run tool_update functions here...")
-
-
-
-    # for example use the tool script to create child nodes automaticly:
+    
+    ## OPTIONAL:
+    ## for example use the tool script to create child nodes automaticly:
     for child in get_children(): # WARNING delete all children example!
         remove_child(child)
 
@@ -36,8 +35,6 @@ func tool_update():
     if Engine.editor_hint: # if in tool mode
         node.set_owner(get_tree().edited_scene_root) # ensure we see the change in tool mode
 
-func _ready():
-    pass # Replace with function body.
 
 
 
