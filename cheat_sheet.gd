@@ -5,14 +5,12 @@ no apologies for my style, i find myself constantly copying patterns over and ov
 """
 
 
-## my normal pattern for setting node paths
+## my normal pattern for setting node paths, allow us to point to a node from this node in the editor
 export(NodePath) var _target_node
 onready var target_node = get_node(_target_node)
 
 
-
 ## trigger stuff from tool mode in the editor by setting a fake boolean
-
 export var tool_update = false setget set_tool_update
 func set_tool_update(input):
     if input:
