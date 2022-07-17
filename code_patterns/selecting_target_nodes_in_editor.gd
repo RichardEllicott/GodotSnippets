@@ -18,13 +18,13 @@ I use this convention, the underscored variable is NodePath, the actual node has
 
 extends Node
 
-export(NodePath) var _target_node
-onready var target_node = get_node(_target_node)
+export (NodePath) var _target_node : NodePath
+onready var target_node : Node = get_node(_target_node)
 
 
 # ALTERNATIVE FOR TOOl SCRIPTS:
 
-export(NodePath) var _target_node
+export(NodePath) var _target_node : NodePath
 var target_node setget , get_target_node # only get
 func get_target_node():
     if not target_node: # if no ref
