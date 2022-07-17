@@ -2,12 +2,14 @@
 
 no apologies for my style, i find myself constantly copying patterns over and over
 
+these functions are like copy and paste boilerplate i seem to end up always typing
+
 """
 
 
 ## my normal pattern for setting node paths, allow us to point to a node from this node in the editor
-export(NodePath) var _target_node
-onready var target_node = get_node(_target_node)
+export (NodePath) var _target_node : NodePath
+onready var target_node : Node = get_node(_target_node)
 
 
 ## trigger stuff from tool mode in the editor by setting a fake boolean
