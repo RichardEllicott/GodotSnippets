@@ -2,7 +2,9 @@
 
 functions for showing flight instruments mainly
 
+getting the compass bearing is fairly easy, from the basis.z
 
+the roll and pitch need to first calculate a bearing to find then the correct roll/pitch
 
 
 """
@@ -32,3 +34,28 @@ func get_roll(_basis : Basis):
     var roll = atan2(basis_y.x,basis_y.y)
 #    print(rad2deg(roll))
     return roll
+    
+
+func get_pitch(_basis : Basis):
+    
+    ## the pitch in radians, positive when pitching up
+    ## if converted to degrees, ranges from -90.0 to 90.0
+
+    var basis_y = _basis.y
+    
+    ## we must rotate the basis.y by the bearing first
+    basis_y = basis_y.rotated(Vector3(0,1,0),get_compass_bearing(_basis))
+
+    ## now the pitch can be computed from the z and y values
+    var pitch = atan2(basis_y.z,basis_y.y)
+    
+    if basis_y.y < 0.0: ## when the y is negative, so we are upside-down, need to make corrections
+        pitch += deg2rad(180.0) # first out by 180.0
+        
+        pitch += deg2rad(180.0) # then need to fmod back here to -180.0 to 180.0
+        pitch = fmod(pitch,deg2rad(360.0))
+        pitch -= deg2rad(180.0)
+    
+#    print(rad2deg(pitch))
+    
+    return pitch
