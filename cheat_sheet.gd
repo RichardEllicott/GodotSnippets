@@ -11,6 +11,27 @@ these functions are like copy and paste boilerplate i seem to end up always typi
 export (NodePath) var _target_node : NodePath
 onready var target_node : Node = get_node(_target_node)
 
+# export to the local path of a scene file
+export(String, FILE, "*.tscn,*.scn") var scene_file = ""
+
+# export to choose a local folder
+export(String, DIR) var folder_path = ""
+
+export(PackedScene) var packed_scene # normal way of loading packed scene
+
+
+
+# export an array of enumerators
+enum MyEnum  {
+    none,
+    apple,
+    orange,
+    pear,
+    carrot,
+   }
+
+export(Array, MyEnum) var array = [MyEnum.apple]
+
 
 ## trigger stuff from tool mode in the editor by setting a fake boolean
 export var tool_update = false setget set_tool_update
