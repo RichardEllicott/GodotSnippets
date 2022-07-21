@@ -58,6 +58,24 @@ func set_mode(input):
             pass
         Mode.mode3:
             pass
+            
+enum Preset {
+    none,
+    preset_01,
+    preset_02,
+   }
+
+export(Preset) var preset = 0 setget set_preset
+func set_preset(input):
+    preset = input
+    print("Mode set to \"%s\", trigger update!" % [preset])
+    match preset:
+        Preset.none:
+            pass
+        Preset.preset_01:
+            pass
+        Preset.preset_02:
+            pass
 
 
 
