@@ -19,8 +19,6 @@ export(String, DIR) var folder_path = ""
 
 export(PackedScene) var packed_scene # normal way of loading packed scene
 
-
-
 # export an array of enumerators
 enum MyEnum  {
     none,
