@@ -78,5 +78,4 @@ export(Preset) var preset = 0 setget set_preset
 func set_preset(input):
     preset = input    
     if preset != 0:
-        var _name = Preset.keys()[preset]
-        call(_name)
+        call(Preset.keys()[preset])
