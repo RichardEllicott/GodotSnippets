@@ -39,5 +39,28 @@ func tool_update():
 
 
 
+## Creates in the editor a mode menu, that triggers updates on setting the mode
+
+enum Mode {
+    demo,
+    mode2,
+    mode3,
+   }
+
+export(Mode) var mode = 0 setget set_mode
+func set_mode(input):
+    mode = input
+    print("Mode set to \"%s\", trigger update!" % [mode])
+    match mode:
+        Mode.demo:
+            pass
+        Mode.mode2:
+            pass
+        Mode.mode3:
+            pass
+
+
+
+
 
 
