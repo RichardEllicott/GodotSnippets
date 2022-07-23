@@ -14,18 +14,23 @@ quickly create a child node of type if missing (works in tool mode)
 ##     var node1 = get_or_create_child(self,"child")
 ##     var node2 = get_or_create_child(node1,"sub_child") # create child of child like making directories
 ##
+
+
+
+## best version so far
+## i would like to just type in a nodepath but you need to feed the parents in here
 func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:
         
-    var node_ref = parent.get_node_or_null(node_name) # get the node if present
-    if not is_instance_valid(node_ref): # if no node found make one
-        node_ref = node_type.new()
-        node_ref.name = node_name
-        parent.add_child(node_ref)
-        node_ref.set_owner(get_tree().edited_scene_root) # show in tool mode
+    var node = parent.get_node_or_null(node_name) # get the node if present
+    if not is_instance_valid(node): # if no node found make one
+        node = node_type.new()
+        node.name = node_name
+        parent.add_child(node)
+        node.set_owner(get_tree().edited_scene_root) # show in tool mode
         
-    assert(node_ref is node_type) # best to check the type matches
+    assert(node is node_type) # best to check the type matches
     
-    return node_ref
+    return node
         
 
 
