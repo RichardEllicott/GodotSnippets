@@ -7,15 +7,16 @@ strings and json
 
 """
 
+
 ## save in binary data
-static func save_to_binary_file(path : String, thing_to_save) -> void:
+static func data_to_bin_file(path : String, thing_to_save) -> void:
     var file = File.new()
     file.open(path, File.WRITE)
     file.store_var(thing_to_save)
     file.close()
     
 
-static func load_from_binary_file(var path : String) -> Dictionary:
+static func data_from_bin_file(var path : String) -> Dictionary:
     var file = File.new()
     file.open(path, File.READ)
     var theDict = file.get_var()
@@ -23,7 +24,7 @@ static func load_from_binary_file(var path : String) -> Dictionary:
     return theDict
     
 ## save in text
-static func save_string_to_file(path : String, content : String):
+static func string_to_file(path : String, content : String):
     var file = File.new()
     var err = file.open(path, File.WRITE)
     if err != OK:
@@ -32,7 +33,7 @@ static func save_string_to_file(path : String, content : String):
     file.store_string(content)
     file.close()
 
-static func load_string_from_file(path : String) -> String:
+static func file_to_string(path : String) -> String:
     var file = File.new()
     var err = file.open(path, File.READ)
     if err != OK:
@@ -43,11 +44,16 @@ static func load_string_from_file(path : String) -> String:
     return content
 
 # using the text save for json
-static func save_to_json_file(path : String, stuff : Dictionary) -> void:
-    save_string_to_file(path,to_json(stuff))
+static func dict_to_json_file(path : String, stuff : Dictionary) -> void:
+    string_to_file(path,to_json(stuff))
     
-static func save_to_pretty_json_file(path : String, stuff : Dictionary) -> void:    
-    save_string_to_file(path,JSON.print(stuff,"    "))
+static func dict_to_pretty_json_file(path : String, stuff : Dictionary) -> void:    
+    string_to_file(path,JSON.print(stuff,"    "))
     
-static func load_from_json_file(path : String) -> Dictionary:
-    return parse_json(load_string_from_file(path))
+static func dict_from_json_file(path : String) -> Dictionary:
+    return parse_json(file_to_string(path))
+
+## https://godotengine.org/qa/424/how-do-you-check-if-a-file-resource-exist 
+static func file_exists(var path : String) -> bool:
+    var file = File.new()
+    return file.file_exists(path)
