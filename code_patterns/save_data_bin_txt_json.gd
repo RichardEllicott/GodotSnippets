@@ -48,13 +48,13 @@ static func file_to_string(path : String) -> String:
     return content
 
 # using the text save for json
-static func dict_to_json_file(path : String, stuff : Dictionary) -> void:
+static func data_to_json_file(path : String, stuff) -> void:
     string_to_file(path,to_json(stuff))
     
-static func dict_to_pretty_json_file(path : String, stuff : Dictionary) -> void:    
+static func data_to_pretty_json_file(path : String, stuff) -> void:    
     string_to_file(path,JSON.print(stuff,"    "))
     
-static func dict_from_json_file(path : String) -> Dictionary:
+static func data_from_json_file(path : String):
     return parse_json(file_to_string(path))
 
 ## https://godotengine.org/qa/424/how-do-you-check-if-a-file-resource-exist 
