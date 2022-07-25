@@ -4,6 +4,14 @@ no apologies for my style, i find myself constantly copying patterns over and ov
 
 these functions are like copy and paste boilerplate i seem to end up always typing
 
+
+SCRAP CODE NOTES:
+
+found this:
+polar2cartesian, need to add to sphere stuff
+https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-method-polar2cartesian
+
+
 """
 
 
