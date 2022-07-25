@@ -2,7 +2,7 @@
 
 quick functions to save data as binary (godot's auto serialisation)
 
-strings and json
+strings and json, pretty json for indents
 
 
 """
