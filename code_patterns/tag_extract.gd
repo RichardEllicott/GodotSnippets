@@ -2,12 +2,15 @@
 
 functions concerning metadata from strings
 
-for example i often use "tags"
+for example i often use "tags" that are inside <>
+
+like this:
+
+"this is a sentance<tag1><tag2>"
 
 
-like this
-
-"this is a sentance<tag>"
+the purpose of the pattern is you can embed instructions in strings, you can put these symbols in node names for example
+you can also put them in blender exports
 
 
 """
