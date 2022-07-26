@@ -20,31 +20,25 @@ this allows a very fast dynamic setup... i find it's better than notes to make a
 """
 
 
-
+## create a child of the parent if it doesn't already exist
 func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:        
-    
     var node = parent.get_node_or_null(node_name) # get the node if present
     if not is_instance_valid(node): # if no node found make one
         node = node_type.new()
         node.name = node_name
         parent.add_child(node)
         node.set_owner(get_tree().edited_scene_root) # show in tool mode
-        
     assert(node is node_type) # best to check the type matches
-    
     return node
-
-
-func get_or_create_node(nodepath : String, node_type = Node) -> Node:
     
+## create a node using a nodepath, make sure to create parents before childs
+func get_or_create_node(nodepath : String, node_type = Node) -> Node:
     var parent : Node = self # assume self is parent
     var node_name : String = nodepath # assume path is name
     var split : PoolStringArray = nodepath.split('/') # we split to check if we have a path
-    
     if split.size() > 1: # if split larger than 1 must be a path
         node_name = split[-1] # the name is the last entry
         split.resize(split.size()-1) # drop the last entry
         var parent_path = split.join('/') # then combine for parent path   
-        parent = get_node_or_null(parent_path) # get the parent
-            
+        parent = get_node_or_null(parent_path) # get the parent 
     return get_or_create_child(parent,node_name,node_type)
