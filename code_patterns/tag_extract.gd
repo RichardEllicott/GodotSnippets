@@ -15,9 +15,6 @@ you can also put them in blender exports
 
 """
 
-
-
-
 static func tag_extract(input_string, open_symbol = '<', close_symbol = '>') -> Array:
     """
     takes an input string which might have many tags like
@@ -26,24 +23,18 @@ static func tag_extract(input_string, open_symbol = '<', close_symbol = '>') -> 
     ["this is a sentance", "tag", "end"]
     
     this is used to extra hidden comman tags
-    
     """
-
     var nest = 0
-    
     var open_brackets = false
-    
     var text = ""
     var instructions = []
     var bracketed_text = ""
     
     for _char in input_string:
-        
         if _char == open_symbol: ## when we open the brackets
             nest += 1
             if nest == 1:
                 open_brackets = true
-                
         elif _char == close_symbol: ## when we close the brackets
             nest -= 1
             if nest == 0:
@@ -55,5 +46,4 @@ static func tag_extract(input_string, open_symbol = '<', close_symbol = '>') -> 
                 bracketed_text += _char
             else:
                 text += _char
-            
     return [text] + instructions
