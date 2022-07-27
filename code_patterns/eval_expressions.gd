@@ -6,7 +6,7 @@
 static func evaluate_with_dict(command, variables : Dictionary, ref = null):
     return evaluate(command,ref,variables.keys(),variables.values())
 
-## evaluate all options, 
+## evaluate all options except error
 static func evaluate(command, ref = null, variable_names = [], variable_values = []):
     ## https://docs.godotengine.org/en/stable/classes/class_expression.html
     ## https://docs.godotengine.org/en/stable/tutorials/scripting/evaluating_expressions.html
