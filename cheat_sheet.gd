@@ -108,26 +108,15 @@ func set_preset(input):
         call(Preset.keys()[preset])
 
 
-
-
-
-
-## this trick allows quick autosetup of node trees
-## example:
-## get_or_create_child(self,"Label",Label)
-##
-
-func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:
-        
+## create a child of the parent if it doesn't already exist
+func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:        
     var node = parent.get_node_or_null(node_name) # get the node if present
     if not is_instance_valid(node): # if no node found make one
         node = node_type.new()
         node.name = node_name
         parent.add_child(node)
         node.set_owner(get_tree().edited_scene_root) # show in tool mode
-        
     assert(node is node_type) # best to check the type matches
-    
     return node
 
 
