@@ -109,7 +109,7 @@ func set_preset(input):
 
 
 ## create a child of the parent if it doesn't already exist
-func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:        
+func get_or_create_child(parent: Node, node_name: String, node_type = Node) -> Node:        
     var node = parent.get_node_or_null(node_name) # get the node if present
     if not is_instance_valid(node): # if no node found make one
         node = node_type.new()
