@@ -5,6 +5,10 @@ shuffle an array, optional seed
 seed is useful to shuffle a deck of cards the same way for instance
 
 
+
+note 0 doesn't seem to work as seed, really this should have an option of entering an RNG object it's flawed as it changes global seed
+
+
 """
 
 
