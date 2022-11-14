@@ -43,19 +43,26 @@ func tool_update():
 #    node.set_owner(get_tree().edited_scene_root)
 
 
+
 ## reflection pattern that would call a function named by an enumerator
 
-
 enum Macro {
-    macro_load_print_cards,
-    example_layout,
+    macro01,
+    macro02,
    }
 
 export(Macro) var macro = 0
 
+func run_macro():
+    var function_name = Macro.keys()[macro]
+    print("print call function: %s" % function_name)
+    call(function_name)
 
-call(Mode.keys()[mode]) ## would call the function
-
+func macro01():
+    pass
+    
+func macro02():
+    pass
 
 
 ## Creates in the editor a mode menu, that triggers updates on setting the mode
