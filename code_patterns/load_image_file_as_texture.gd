@@ -1,5 +1,11 @@
 """
 
+this way causes errors for export...
+
+instead load(_filename) returns a texture
+
+
+
 
 """
 
