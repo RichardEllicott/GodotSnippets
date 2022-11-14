@@ -32,3 +32,18 @@ func load_all_resources_in_directory(path, types = ['.png', '.jpg']):
                 ret[key] = load(file_path)
     
     return ret
+    
+    
+## used with this pattern
+
+export(String, DIR) var data_path = "" ## folder to look for resources
+
+var textures_dict_cache
+
+func get_textures_dict():
+    if not textures_dict_cache:
+        textures_dict_cache = load_all_resources_in_directory(data_path + '/images', ['.png', '.jpg'])  
+    return textures_dict_cache
+    
+    
+    
