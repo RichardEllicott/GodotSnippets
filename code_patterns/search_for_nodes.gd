@@ -26,7 +26,7 @@ func find(name):
 
 
 
-## added depth limit:
+## added depth limit (not working):
 
 # https://godotengine.org/qa/17524/how-to-find-an-instanced-scene-by-its-name
 func find_node_by_name(root, name, max_depth = 10, depth = 0):
@@ -47,3 +47,14 @@ func find_node_by_name(root, name, max_depth = 10, depth = 0):
         if(found):
             return found
     return null
+    
+    
+    
+https://godotengine.org/qa/110576/how-do-you-get-all-nodes-of-a-certain-class
+func findByClass(node: Node, className : String, result : Array) -> void:
+  if node.is_class(className) :
+    result.push_back(node)
+  for child in node.get_children():
+    findByClass(child, className, result)
+    
+    
