@@ -1,3 +1,15 @@
+"""
+
+some of these functions are no use if you use "find_node"
+https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-find-node
+
+
+get_tree().get_root().find_node("Name819", true)
+
+
+"""
+
+
 # https://godotengine.org/qa/17524/how-to-find-an-instanced-scene-by-its-name
 func _find_node_by_name(root, name):
     """
