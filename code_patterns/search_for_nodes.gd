@@ -26,27 +26,25 @@ func find(name):
 
 
 
-## added depth limit (not working):
-
 # https://godotengine.org/qa/17524/how-to-find-an-instanced-scene-by-its-name
-func find_node_by_name(root, name, max_depth = 10, depth = 0):
+# added depth 18/11/2022
+
+func find_node_by_name(root, _name, max_depth = 3, depth = 0):
     """
-    SearchTools.find_node_by_name( get_tree().get_root() , "name1")
+    find_node_by_name with depth limit
+    """
     
-    finds a node by name in all childs of root
-
-
-    find_node_by_name( get_tree().get_root() , "name1") ## would search whole scene
-    """
-    if(root.get_name() == name):
-        return root
-    for child in root.get_children():
-        if(child.get_name() == name):
-            return child
-        var found = find_node_by_name(child, name, max_depth, depth + 1)
-        if(found):
-            return found
-    return null
+    print("looking for %s, depth = %s root = %s" % [_name, depth, root.name])
+    
+    if depth < max_depth:
+        if(root.get_name() == _name): ## we have a mathc
+            return root
+        for child in root.get_children():
+            if(child.get_name() == _name):
+                return child
+            var found = find_node_by_name(child, _name, max_depth, depth + 1)
+            if(found):
+                retu
     
     
     
