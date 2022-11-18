@@ -7,6 +7,8 @@ https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method
 get_tree().get_root().find_node("Name819", true)
 
 
+
+
 """
 
 
@@ -21,10 +23,10 @@ get_tree().get_root().find_node("Name819", true)
 func find_node_by_name(root, _name, max_depth = 3, depth = 0):
     """
     find_node_by_name with depth limit
-    """
     
-    print("looking for %s, depth = %s root = %s" % [_name, depth, root.name])
+    find_node_by_name(get_tree().get_root(), "NameInWholeScene") ## use the top of the tree as the root for a global search
     
+    """    
     if depth < max_depth:
         if(root.get_name() == _name): ## we have a mathc
             return root
