@@ -121,9 +121,16 @@ func find_node_no_recurse(root, _name, max_depth = 100, max_count = 1000):
                 
 ## how to make a more complicated search with a predicate, essentially a query, like all buttons with a certain name etc
 
-func predicate_example(x):
-    return x.name == "DebugLabel" and x is RichTextLabel
 
+func predicate_example(x):
+    return x.name == "DebugLabel" and x is RichTextLabel ## you could make multiple stipulations
+
+
+func get_all_buttons():
+    return find_nodes_by_predicate(self, funcref(self, "is_button_predicate")) ## usage example
+
+func is_button_predicate(x):
+    return x is Button
 
 func find_nodes_by_predicate(root : Node, predicate : FuncRef, max_depth : int = 100, max_count : int = 1000):
     """
@@ -164,5 +171,5 @@ func find_nodes_by_predicate(root : Node, predicate : FuncRef, max_depth : int =
                 walk_stack.push_back(node.get_child(i))
                 walk_stack_depth.push_back(node_depth + 1)
                 
-    return search_results    
+    return search_results
     
