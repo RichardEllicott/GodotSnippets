@@ -119,13 +119,13 @@ func find_node_no_recurse(root, _name, max_depth = 100, max_count = 1000):
                 
                 
                 
-## how to make a more complicated search with a predicate
+## how to make a more complicated search with a predicate, essentially a query, like all buttons with a certain name etc
 
 func predicate_example(x):
     return x.name == "DebugLabel" and x is RichTextLabel
 
 
-func match_node_by_predicate(root : Node, predicate : FuncRef, max_depth : int = 100, max_count : int = 1000):
+func find_nodes_by_predicate(root : Node, predicate : FuncRef, max_depth : int = 100, max_count : int = 1000):
     """
     this pattern built by me to use a stack, no recursion
     
@@ -152,8 +152,8 @@ func match_node_by_predicate(root : Node, predicate : FuncRef, max_depth : int =
         
         print("walk (%s) %s depth=%s" % [count,node,node_depth])
         
-        if predicate.call_func(node):
-            return node
+        if predicate.call_func(node): ## our predicate returns tur
+            search_results.append(node)
             
         if node_depth < max_depth: ## as long as we are less than max_depth
             
@@ -163,4 +163,6 @@ func match_node_by_predicate(root : Node, predicate : FuncRef, max_depth : int =
                 i -= 1
                 walk_stack.push_back(node.get_child(i))
                 walk_stack_depth.push_back(node_depth + 1)
+                
+    return search_results    
     
