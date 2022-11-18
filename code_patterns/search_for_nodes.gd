@@ -69,16 +69,11 @@ func findByClass(node: Node, className : String, result : Array) -> void:
     
     
     
-    
-    
 func find_node_no_recurse(root, _name, max_depth = 100, max_count = 10):
     """
     this pattern built by me to use a stack, no recursion
     
     could be more effecient in some circumstances
-    
-    
-    has some interesting shit in here, saved as notes
     
     """
         
@@ -112,8 +107,6 @@ func find_node_no_recurse(root, _name, max_depth = 100, max_count = 10):
             var i = node.get_child_count()
             while i > 0:
                 i -= 1
-                var child = node.get_child(i)
-                walk_stack.push_back(child)
+                walk_stack.push_back(node.get_child(i))
                 walk_stack_depth.push_back(node_depth + 1)
-    
     
