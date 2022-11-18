@@ -34,11 +34,9 @@ func find_node_by_name(root, name, max_depth = 10, depth = 0):
     SearchTools.find_node_by_name( get_tree().get_root() , "name1")
     
     finds a node by name in all childs of root
-    intended to be used for global find function:
-        mylib.find(name)
-        
-        
-    call like SearchTools.find_node_by_name( get_tree().get_root() , "name1")
+
+
+    find_node_by_name( get_tree().get_root() , "name1") ## would search whole scene
     """
     if(root.get_name() == name):
         return root
