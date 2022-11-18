@@ -153,3 +153,22 @@ func find_nodes_by_predicate(root : Node, predicate : FuncRef, max_depth : int =
                 
     return search_results
     
+    
+    
+## far more simple way but may be a bit slow
+func get_all_buttons():
+    var ret = []
+    for child in get_all_children(self):
+        
+        if child is Button:
+            ret.append(child)
+    return ret
+
+
+## recursive get all nodes
+func get_all_children(in_node,arr:=[]):
+    arr.push_back(in_node)
+    for child in in_node.get_children():
+        arr = get_all_children(child,arr)
+    return arr  
+    
