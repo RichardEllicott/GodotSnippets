@@ -68,10 +68,10 @@ func findByClass(node: Node, className : String, result : Array) -> void:
     findByClass(child, className, result)
     
     
-    
-func find_node_no_recurse(root, _name, max_depth = 100, max_count = 10):
+
+func find_node_no_recurse(root, _name, max_depth = 100, max_count = 1000):
     """
-    this pattern built by me to use a stack, no recursion
+    this pattern built by me to use a stack, no recursion, it looks more complicated but should use less memory and be faster
     
     could be more effecient in some circumstances
     
@@ -88,9 +88,15 @@ func find_node_no_recurse(root, _name, max_depth = 100, max_count = 10):
         if count > max_count:
             break
         
+        ## popping back is faster, but ends up search all tree top to bottom
         var node = walk_stack.pop_back()
         var node_depth = walk_stack_depth.pop_back()
-
+        
+#        ## if we used this alternate pattern, we would search in slices
+#        ## this could be faster but pop_front is also slower
+#        var node = walk_stack.pop_front()
+#        var node_depth = walk_stack_depth.pop_front()
+        
         print("walk (%s) %s depth=%s" % [count,node,node_depth])
         
         if node.name == _name: ## we have a match, exit the function
@@ -98,12 +104,12 @@ func find_node_no_recurse(root, _name, max_depth = 100, max_count = 10):
             
         if node_depth < max_depth: ## as long as we are less than max_depth
             
-#            ## this method ends up backwards due to the stack
+#            ## this method ends up backwards due to the stack pattern
 #            for child in node.get_children(): ## we have no other result, push childs to stack
 #                walk_stack.push_back(child)
 #                walk_stack_depth.push_back(node_depth + 1)
             
-            ## this pattern iterates the children backwards padawan
+            ## this pattern iterates the children backwards padawan (ensures search is forwards)
             var i = node.get_child_count()
             while i > 0:
                 i -= 1
