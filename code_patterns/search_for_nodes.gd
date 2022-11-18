@@ -68,3 +68,41 @@ func findByClass(node: Node, className : String, result : Array) -> void:
     findByClass(child, className, result)
     
     
+    
+func find_node_no_recurse(root, _name, max_count = 1000):
+    """
+    this pattern built by me to use a stack, no recursion
+    
+    could be more effecient in some circumstances
+    
+    """
+    
+    var pop_back = true
+    
+    
+    var count = 0
+    
+    var walk_stack = [root]
+    
+    while walk_stack.size() > 0:
+        
+        count += 1
+        if count > max_count:
+            return # we reach our limit return null
+        
+        var node = walk_stack.pop_back()
+#        var node = walk_stack.pop_front()
+
+        print("walk %s %s" % [count,node])
+        
+        if node.name == _name:
+                
+            print("walk match!!")
+                
+            return node
+        
+        for child in node.get_children(): ## we have no other result, push childs to stack
+            walk_stack.push_back(child)
+            
+    
+    
