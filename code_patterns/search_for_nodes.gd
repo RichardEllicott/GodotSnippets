@@ -179,6 +179,8 @@ static func get_all_children(node : Node, array : Array = []) -> Array:
 ## recursive get all nodes, solved with depth now 21/11/2022
 
 static func get_all_children(node : Node, max_depth = 100, array : Array = [], depth = 0) -> Array:
+    ## get all childs, recursive with depth
+    ## get_all_children(get_tree().get_root()) # get all of scene
     if depth <= max_depth:
         array.push_back(node)
         for child in node.get_children():
