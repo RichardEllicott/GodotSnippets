@@ -165,10 +165,21 @@ func get_all_buttons():
     return ret
 
 
-## recursive get all nodes
-func get_all_children(in_node,arr:=[]):
-    arr.push_back(in_node)
-    for child in in_node.get_children():
-        arr = get_all_children(child,arr)
-    return arr  
+
     
+    
+# recursive get all nodes
+static func get_all_children(node : Node, array : Array = []) -> Array:
+    array.push_back(node)
+    for child in node.get_children():
+        array = get_all_children(child,array)
+    return array  
+    
+    
+## recursive get all nodes
+static func get_all_children_depth(node : Node, array : Array = [], max_depth = 10, depth = 0) -> Array:
+    array.push_back(node)
+    if depth < max_depth:
+        for child in node.get_children():
+            array = get_all_children_depth(child,array,max_depth,depth)
+    return array
