@@ -176,10 +176,11 @@ static func get_all_children(node : Node, array : Array = []) -> Array:
     return array  
     
     
-## recursive get all nodes
-static func get_all_children_depth(node : Node, array : Array = [], max_depth = 10, depth = 0) -> Array:
+## recursive get all nodes (added depth), prob the simplest way of doing stuff here
+
+static func get_all_children(node : Node, max_depth = 10, array : Array = [], depth = 0) -> Array:
     array.push_back(node)
     if depth < max_depth:
         for child in node.get_children():
-            array = get_all_children_depth(child,array,max_depth,depth)
-    return array
+            array = get_all_children(child,max_depth,array,depth)
+    return array  
