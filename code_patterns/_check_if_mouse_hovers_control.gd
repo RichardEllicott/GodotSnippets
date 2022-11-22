@@ -1,14 +1,11 @@
 
 
-
-
-func _check_if_mouse_hovers_node(control : Control, camera2D : Camera2D) -> bool:
-    
+func _check_if_mouse_hovers_control(control : Control, camera2D : Camera2D) -> bool:
+    ## works even when dragging, must check all childs with this function
     
     var viewport : Viewport = get_viewport()
     var mouse_position : Vector2 = viewport.get_mouse_position()
 
-    
     var viewport_rect = viewport.get_visible_rect()
     
     
