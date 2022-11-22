@@ -7,11 +7,11 @@ works even when dragging with mouse down over all controls, ineffecient but good
 
 """
 
-func _check_if_mouse_hovers_control(control : Control, camera2D : Camera2D) -> bool:
+
+static func _check_if_mouse_hovers_control(control : Control, camera2D : Camera2D, viewport : Viewport) -> bool:
     ## works even when dragging, must check all childs with this function
     ## took a while to work these offsets out so saved as a function
     
-    var viewport : Viewport = get_viewport()
     var mouse_position : Vector2 = viewport.get_mouse_position()
     
     var control_global_rect : Rect2 = control.get_global_rect()
