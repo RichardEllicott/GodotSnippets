@@ -1,4 +1,12 @@
 
+"""
+
+function to check if mouse hovers a control, taking into account the camera zoom, offset and center mode
+
+works even when dragging with mouse down over all controls, ineffecient but good
+
+"""
+
 
 func _check_if_mouse_hovers_control(control : Control, camera2D : Camera2D) -> bool:
     ## works even when dragging, must check all childs with this function
