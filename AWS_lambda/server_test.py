@@ -17,6 +17,9 @@ https://aws.plainenglish.io/build-an-api-to-invoke-a-lambda-function-with-dynamo
 "3. Create an IAM Role to permit Lambda to read & write the DynamoDB table"
 
 
+this scrap saved luckily before amazon deleted it!
+
+
 """
 import boto3
 import json
