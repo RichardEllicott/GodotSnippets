@@ -2,6 +2,7 @@
 
 class SQLiteWrapper:
     ## extensive collection of simple wrappers for SQL commands
+    ## 14/12/2022
 
     ## execute an sql string
     def execute_sql(self, sql):
