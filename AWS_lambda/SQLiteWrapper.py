@@ -1,37 +1,56 @@
 
-
 class SQLiteWrapper:
-    ## extensive collection of simple wrappers for SQL commands
-    ## 14/12/2022
+    """extensive collection of simple wrappers for SQL commands"""
 
-    ## execute an sql string
     def execute_sql(self, sql):
+        """execute an sql string"""
         self.result = self.cursor.execute(sql)
         self.connection.commit()
-        return result
+        return self.result
 
-    def get_table_names(self):
+    ## 
+    def get_table_names(self): 
+        """returns a list of table names, empty list if no tables"""
+
+        # sql = "SELECT name FROM sqlite_master WHERE type='table';"
+        # # sql = "tables"
+        # self.cursor = self.connection.execute(sql)
+
+        # cursor_description = self.cursor.description
+        # if not cursor_description: cursor_description = [] ## if None is returned due to no tables, make it an empty list
+
+        # names = list(map(lambda x: x[0], cursor_description)) ## convert the output to a plain list
+        # names = cursor_description
+        # return names
+
         sql = "SELECT name FROM sqlite_master WHERE type='table';"
-        self.connection.execute(sql)
 
-        cur_des = self.cursor.description
-        if not cur_des: cur_des = []
+        self.cursor = self.connection.cursor()
+        self.cursor.execute(sql)
+        ret = self.cursor.fetchall()
+        ret = list(map(lambda x: x[0], ret))
 
-        names = list(map(lambda x: x[0], cur_des)) ## convert the output to a plain list
+        return ret
+
+
+    def get_column_names(self, tablename):
+
+        # https://www.alixaprodev.com/2022/03/python-to-get-database-column-names.html
+        self.cursor = self.connection.execute('select * from {}'.format(tablename))
+        names = list(map(lambda x: x[0], self.cursor.description)) ## convert the output to a plain list
         return names
 
+
+
+
     def does_table_exist(self, tablename):
+        """does a tablename exist"""
         return tablename in self.get_table_names()
 
-
-
     def create_table(self, tablename, column_names):
-
-        # if tablename in self.get_table_names():
-        #     print("OOOOOHHH NOOO")
+        """create a table with columns, we assume strings only for our db, note will not overwrite an existing table will just return"""
 
         if self.does_table_exist(tablename):
-            print("table \"{}\" already exists".format(tablename))
             return
 
         self.column_names = column_names
@@ -49,13 +68,15 @@ class SQLiteWrapper:
 
         except Exception as e:
             print(e)
+            print("EXCEPT HOOK")
 
-    def insert_row(self, tablename, row=['A', 'B', 'C']):
-        # insert a row (as a list of tuple of correct length)
+    ## insert a row into a table, be sure to use a matching array or tuple with correct length, ie ['richard', 'pass123', 'some json data?'] based on the table's width
+    def insert_row(self, tablename, row):
+        """insert a row (as a list of tuple of correct length)"""
         self.insert_rows(tablename, [row])
 
     def insert_rows(self, tablename, rows):
-
+        """insert a list of rows, could be a list of tuples, ensure the records are the correct length"""
 
         insert_width = len(rows[0])
 
@@ -73,41 +94,83 @@ class SQLiteWrapper:
         self.connection.commit()
 
     def get_all_rows(self, tablename):
+        """get all rows as a list of tuples, this may be slow if table is large"""
         self.result = self.cursor.execute("SELECT * FROM {}".format(tablename))
         return self.result.fetchall()
 
-    def _print_table_helper(self, _list, padding):
+    def _markdown_table_helper(self, _list, padding):
+        """private class for printing a table to markdown"""
 
         new_list = []
 
         for i in range(len(_list)):
             val = "| " + str(_list[i])
-            new_list.append(val.ljust(16))
+            new_list.append(val.ljust(padding))
+
+        new_list.append("|")
 
         s = "".join(new_list) + "\n"
         return s
 
-    def print_table(self, tablename, padding=8):
 
-        # print("KEYS: ", self.get_column_names(tablename))
 
-        print("table:", tablename, "entries:", self.get_row_count(tablename))
 
-        col_names = self.get_column_names(tablename)
+    def get_markdown_table(self, tablename, padding):
+
+        
+        """
+
+        | Syntax      | Description |
+        | ----------- | ----------- |
+        | Header      | Title       |
+        | Paragraph   | Text        |
+
+        """
 
         s = ""
-        s += "-" * padding * 8 + "\n"  # line
-        s += self._print_table_helper(col_names, padding)
-        s += "-" * padding * 8 + "\n"  # line
+
+        column_names = self.get_column_names(tablename)
+
+        s += self._markdown_table_helper(column_names, padding)
+
+        for i in range(len(column_names)):
+            s += "| " + "-" * (padding - 3) + " "
+        s += "|\n"
+
 
         rows = self.get_all_rows(tablename)
 
         for row in rows:
 
-            s += self._print_table_helper(row, padding)
-        s += "-" * padding * 8 + "\n"  # line
+            s += "{}".format(self._markdown_table_helper(row, padding))
 
-        print(s)
+
+
+        return s
+
+
+    def print_database(self):
+        print("print_database...")
+
+        print("tablenames: ", self.get_table_names())
+        # print("tablenames: ", self.get_table_names())
+
+
+
+        for tablename in self.get_table_names():
+
+
+
+            print("tablename:", tablename)
+            print("=" * 32)
+
+
+
+    def print_table(self, tablename, padding = 32):
+
+        print(self.get_markdown_table(tablename,padding))
+
+
 
     def delete_row(self, tablename, match_col, _id):
 
@@ -149,12 +212,7 @@ class SQLiteWrapper:
         self.connection.close()
 
 
-    def get_column_names(self, tablename):
 
-        # https://www.alixaprodev.com/2022/03/python-to-get-database-column-names.html
-        self.cursor = self.connection.execute('select * from {}'.format(tablename))
-        names = list(map(lambda x: x[0], self.cursor.description)) ## convert the output to a plain list
-        return names
 
         # NOT WORKING
 
