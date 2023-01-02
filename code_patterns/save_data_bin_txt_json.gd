@@ -70,8 +70,8 @@ static func file_exists(var path : String) -> bool:
 ########
 
 static func save_to_json_file(path : String, content : Dictionary):
-    var file = File.new()
-    var err = file.open(path, File.WRITE)
+    var file: File = File.new()
+    var err: int = file.open(path, File.WRITE)
     if err != OK:
         ## https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#enum-globalscope-error
         push_error("failed to open file at: \"%s\"\nerror code: %s" % [path,err])
@@ -79,11 +79,11 @@ static func save_to_json_file(path : String, content : Dictionary):
     file.close()
 
 static func load_from_json_file(path : String) -> Dictionary:
-    var file = File.new()
-    var err = file.open(path, File.READ)
+    var file: File = File.new()
+    var err: int = file.open(path, File.READ)
     if err != OK:
         ## https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#enum-globalscope-error
         push_error("failed to open file at: \"%s\"\nerror code: %s" % [path,err])
-    var content = parse_json(file.get_as_text())
+    var content: Dictionary = parse_json(file.get_as_text())
     file.close()
     return content
