@@ -23,6 +23,8 @@ static func tag_extract(input_string, open_symbol = '[', close_symbol = ']') -> 
     ["this is a sentance", "tag", "end"]
     
     this is used to extra hidden comman tags
+    
+    https://github.com/RichardEllicott/GodotSnippets/blob/master/code_patterns/tag_extract.gd
     """
     var nest = 0
     var open_brackets = false
