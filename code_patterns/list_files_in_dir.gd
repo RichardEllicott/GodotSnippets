@@ -1,45 +1,28 @@
 """
 
-listing files in a directory
+listing files in a directory, load all images in directory as dict
 
 """
 
 
-export(String, DIR) var folder_path = "" # export hint for choosing a folder
-
-
-func list_files_in_directory(path):
+static func list_files_in_directory(path : String) -> Array:
     var files = []
     var dir = Directory.new()
     dir.open(path)
-    dir.list_dir_begin()
-
-    while true:
-        var file = dir.get_next()
-        if file == "":
-            break
-        files.append(file)
-
-    dir.list_dir_end()
-
+    dir.list_dir_begin(true)
+    var file = dir.get_next()
+    while file != '':
+        files += [file]
+        file = dir.get_next()
     return files
 
 
-
-        """
-        matching start and fin of filenames with regex (saved for refactor)
-
-        can't seem to get match groups working (if they exist in godot)
-
-        var re = "TROO"
-        var regex = RegEx.new()
-        # ^ assert starts
-        # .* is wildchar
-        # \\. escape char to match .
-        # $ assert start
-        regex.compile("^" + re + ".*" + "\\.png$")
-        var result = regex.search(file)
-        if result:
-#            print("match: ", file)
-            print(result.get_strings())
-        """
+static func load_all_resources_in_directory(path : String, types : Array = ['.png', '.jpg', '.webp']) -> Dictionary:
+    var ret = {}
+    for _filename in list_files_in_directory(path):
+        for type in types:
+            if _filename.ends_with(type): ## filename of valid type
+                var key = _filename.split('.')[0]
+                var file_path = "%s/%s" % [path,_filename]
+                ret[key] = load(file_path)
+    return ret
