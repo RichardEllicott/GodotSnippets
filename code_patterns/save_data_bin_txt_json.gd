@@ -70,6 +70,9 @@ static func file_exists(var path : String) -> bool:
 ########
 
 static func save_to_json_file(path : String, content : Dictionary, pretty: bool = true):
+    """
+    https://github.com/RichardEllicott/GodotSnippets/blob/master/code_patterns/save_data_bin_txt_json.gd
+    """
     var file: File = File.new()
     var err: int = file.open(path, File.WRITE)
     if err != OK:
@@ -82,6 +85,9 @@ static func save_to_json_file(path : String, content : Dictionary, pretty: bool 
     file.close()
 
 static func load_from_json_file(path : String) -> Dictionary:
+    """
+    https://github.com/RichardEllicott/GodotSnippets/blob/master/code_patterns/save_data_bin_txt_json.gd
+    """
     var file: File = File.new()
     var err: int = file.open(path, File.READ)
     if err != OK:
