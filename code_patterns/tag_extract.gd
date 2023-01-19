@@ -2,11 +2,11 @@
 
 functions concerning metadata from strings
 
-for example i often use "tags" that are inside <>
+for example i often use "tags" that are inside []
 
 like this:
 
-"this is a sentance<tag1><tag2>"
+"this is a sentance[tag1][tag2]"
 
 
 the purpose of the pattern is you can embed instructions in strings, you can put these symbols in node names for example
@@ -15,14 +15,16 @@ you can also put them in blender exports
 
 """
 
-static func tag_extract(input_string, open_symbol = '<', close_symbol = '>') -> Array:
+static func tag_extract(input_string, open_symbol = '[', close_symbol = ']') -> Array:
     """
     takes an input string which might have many tags like
-    "this is<tag> a sentance<end>"
+    "this is[tag] a sentance[end]"
     =>
     ["this is a sentance", "tag", "end"]
     
     this is used to extra hidden comman tags
+    
+    https://github.com/RichardEllicott/GodotSnippets/blob/master/code_patterns/tag_extract.gd
     """
     var nest = 0
     var open_brackets = false
