@@ -440,7 +440,11 @@ class PathFinder3D:
     var max_checks : int = 1000 # max total checks
     var max_range: int = 1000 # max range
 
-    var shave_paths = true # shave the paths down when their are runs of the same direction reducing the coordinates returned
+    var shave_paths = false # shave the paths down when their are runs of the same direction reducing the coordinates returned
+    
+    
+    
+    var special_direction_mode = false # if true, only allows foward pathding pattern, designed for a train
     
     # valid translations for pathfind movement, could support knight moves etc but normal is just N,E,S,W
     var translations = [
@@ -507,7 +511,7 @@ class PathFinder3D:
             
             
             if build_island_map: # extra island map feature, creates a cache of tile to island ref
-                island_map.set_cell_item(cell.x,cell.y,cell.z,island_map_set_ref22)
+                island_map.set_cell_item(cell.x,cell.y,cell.z,island_map_current_id)
             
             if _sucess_predicate(cell): # if this cell is our target, break loop
                 sucess = true
@@ -630,7 +634,7 @@ class PathFinder3D:
     
     var build_island_map: bool = false # if true, build an island map
     var island_map: GridMap = GridMap.new()
-    var island_map_set_ref22: int = 0
+    var island_map_current_id: int = 0
     
     func island_search():
         """
@@ -643,7 +647,7 @@ class PathFinder3D:
         
         build_island_map = true
         island_map.clear()
-        island_map_set_ref22 = 10
+        island_map_current_id = 10
         
         
         var draw_to_debug_grid_map = false
@@ -672,7 +676,7 @@ class PathFinder3D:
                 island_sizes.append(island_size)
 
                 
-                island_map_set_ref22 += 1
+                island_map_current_id += 1
         
         if draw_to_debug_grid_map:
             for i in island_positions.size():
@@ -719,6 +723,26 @@ class PathFinder3D:
         return ids
            
         
+        
+    
+    var _name_to_id
+    func name_to_id(_name: String) -> int:
+        if not _name_to_id:
+            _name_to_id = {}
+            for _id in grid_map.mesh_library.get_item_list():
+                var __name = grid_map.mesh_library.get_item_name(_id)
+                _name_to_id[__name] = _id
+        return _name_to_id.get(_name)
+    
+    
+    var _id_to_name
+    func id_to_name(id: int) -> String:
+        if not _id_to_name:
+            _id_to_name = {}
+            for _id in grid_map.mesh_library.get_item_list():
+                var _name = grid_map.mesh_library.get_item_name(_id)
+                _id_to_name[id] = _name
+        return _id_to_name.get(id)
     
     ## overriding these functions changes the behaviour of the pathfinder
     
@@ -734,6 +758,10 @@ class PathFinder3D:
     # returns true when we meet the conditions to end our search, normally this just matches the "to" as we have reached a destination
     # could be replaced with custom behaviour
     func _sucess_predicate (position: Vector3):
+        return position == to
+
+
+    func __sucess_predicate (position: Vector3):
         return position == to
         
 
@@ -1193,38 +1221,6 @@ class UsefulData:
 
 class Scratch:
     
-    func _init():
-        print("run Scratch...")
-        test()
-        
-        
-    func gen_egg_shell():
-        # might be a useful search pattern, for searching with no blocks
-        print("gen_egg_shell...")
-        
-        var shell = []
-        
-        var shell_count = 4
-        
-        for shell_i in shell_count:
-            
-            var origin = Vector3(1,1,1) * -shell_i
-            
-            var width = shell_i * 2 + 1
-            
-            print(origin)
-            print(width)
-            
-#            for y in width:
-#
-#                if y == 
-#
-#                for z in width:
-#                    for x in width:
-#
-#                        pass
-            
-        
         
 
     func test():
@@ -1261,8 +1257,12 @@ class Scratch:
                 
             print(s)
             
-        gen_egg_shell()
-        
+
+
+
+
+
+
         
 
 
