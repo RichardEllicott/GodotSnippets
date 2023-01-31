@@ -3,8 +3,8 @@
 ## built to display a time to the user like 03/06/2017 13:01:44
 static func unix_time_to_timestamp(number) -> String:
     var time : Dictionary = OS.get_datetime_from_unix_time(number);
-#    var display_string : String = "%d/%02d/%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute];
-    var display_string : String = "%d/%02d/%02d %02d:%02d:%02d" % [time.day, time.month, time.year, time.hour, time.minute, time.second];
+    var display_string : String = "%d-%02d-%02d %02d:%02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute, time.second];
+#    var display_string : String = "%d/%02d/%02d %02d:%02d:%02d" % [time.day, time.month, time.year, time.hour, time.minute, time.second];
     return display_string
     
 
