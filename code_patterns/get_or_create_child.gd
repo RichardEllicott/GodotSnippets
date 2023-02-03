@@ -46,16 +46,20 @@ func get_or_create_node(nodepath : String, node_type = Node) -> Node:
     
     
     
-    ## adjusted to static, had issue running in some places now uses parent to find get_tree()
-    class Tools:
-        ## create a child of the parent if it doesn't already exist
-    static func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:        
-        var node = parent.get_node_or_null(node_name) # get the node if present
-        if not is_instance_valid(node): # if no node found make one
-            node = node_type.new()
-            node.name = node_name
-            parent.add_child(node)
+
+
+
+## static version
+## also only runs certain parts in tool mode (to show the nodes in editor)
+
+static func get_or_create_child(parent: Node,node_name: String, node_type = Node) -> Node:        
+    var node = parent.get_node_or_null(node_name) # get the node if present
+    if not is_instance_valid(node): # if no node found make one
+        node = node_type.new()
+        node.name = node_name
+        parent.add_child(node)
+        if Engine.is_editor_hint():
             node.set_owner(parent.get_tree().edited_scene_root) # show in tool mode
-        assert(node is node_type) # best to check the type matches
-        return node
+    assert(node is node_type) # best to check the type matches
+    return node
     
