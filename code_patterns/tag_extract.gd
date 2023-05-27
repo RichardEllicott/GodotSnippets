@@ -15,6 +15,8 @@ you can also put them in blender exports
 
 """
 
+
+
 static func tag_extract(input_string, open_symbol = '[', close_symbol = ']') -> Array:
     """
     takes an input string which might have many tags like
